@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>特定商取引法に基づく表記 — ENNOU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green:      #1F5A3D;
+      --green-soft: #E5EDE5;
+      --cream-soft: #FAF7F0;
+      --ink:        #1A1A1A;
+      --ink-dim:    #5C5C5C;
+      --ink-soft:   #8C8C8C;
+      --border:     #ECE6D7;
+      --font: "Noto Sans JP", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+      --max: 800px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font); background: var(--cream-soft); color: var(--ink); -webkit-font-smoothing: antialiased; line-height: 1.8; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 40px; border-bottom: 1px solid var(--border);
+      background: rgba(250,247,240,.92);
+      backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { font-weight: 900; font-size: 18px; letter-spacing: 5px; color: var(--green); }
+    .nav-back { font-size: 13px; color: var(--ink-soft); }
+
+    .container { max-width: var(--max); margin: 0 auto; padding: 56px 24px 80px; }
+
+    .page-label { font-size: 12px; letter-spacing: 5px; font-weight: 700; color: var(--green); margin-bottom: 12px; }
+    h1 { font-size: 30px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+    .updated { font-size: 13px; color: var(--ink-soft); margin-bottom: 40px; }
+
+    .note {
+      background: var(--green-soft); border-radius: 16px; padding: 16px 20px;
+      font-size: 13px; line-height: 1.85; color: var(--ink-dim); margin-bottom: 40px;
+    }
+
+    h2 {
+      font-size: 15px; font-weight: 800; color: var(--ink);
+      margin-top: 48px; margin-bottom: 16px;
+      padding-bottom: 8px; border-bottom: 2px solid var(--green-soft);
+    }
+
+    .table-wrap { background: #fff; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 16px; }
+    .row { display: grid; grid-template-columns: 160px 1fr; border-bottom: 1px solid var(--border); }
+    .row:last-child { border-bottom: none; }
+    .row-key { padding: 16px 20px; font-size: 13px; font-weight: 600; color: var(--ink-soft); background: var(--cream-soft); }
+    .row-val { padding: 16px 20px; font-size: 14px; color: var(--ink-dim); line-height: 1.8; }
+
+    p { font-size: 14px; line-height: 1.9; color: var(--ink-dim); margin-bottom: 12px; }
+
+    .footer { padding: 24px 40px; border-top: 1px solid var(--border); text-align: center; font-size: 12px; color: var(--ink-soft); }
+
+    @media (max-width: 768px) {
+      .nav { padding: 14px 20px; }
+      .container { padding: 36px 20px 60px; }
+      h1 { font-size: 22px; }
+      .row { grid-template-columns: 1fr; }
+      .row-key { padding: 12px 16px 4px; border-bottom: none; }
+      .row-val { padding: 4px 16px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="/" class="nav-logo">ENNOU</a>
+    <a href="/" class="nav-back">← トップへ</a>
+  </nav>
+
+  <div class="container">
+    <p class="page-label">LEGAL</p>
+    <h1>特定商取引法に基づく表記</h1>
+    <p class="updated">最終更新日：2026年4月7日</p>
+
+    <div class="note">
+      本表記は、特定商取引法（第11条）に基づき、有償サービスを提供するMIIRIについて記載しています。ENNOUは無償サービスであり、本表記の対象外です。
+    </div>
+
+    <h2>事業者情報</h2>
+    <div class="table-wrap">
+      <div class="row">
+        <div class="row-key">事業者名</div>
+        <div class="row-val">ENNOU</div>
+      </div>
+      <div class="row">
+        <div class="row-key">所在地</div>
+        <div class="row-val">WIZARD BLDG. 402, 1-4-3 Sengencho, Nishi-ku, Yokohama, Kanagawa</div>
+      </div>
+      <div class="row">
+        <div class="row-key">お問い合わせ</div>
+        <div class="row-val"><a href="mailto:ennou.contact@gmail.com">ennou.contact@gmail.com</a><br>対応時間：平日 19:00〜23:00</div>
+      </div>
+    </div>
+
+    <h2>販売サービス（MIIRI）</h2>
+    <div class="table-wrap">
+      <div class="row">
+        <div class="row-key">サービス名</div>
+        <div class="row-val">MIIRI（家庭菜園収益管理アプリ）</div>
+      </div>
+      <div class="row">
+        <div class="row-key">販売価格</div>
+        <div class="row-val">各プランの価格はApp Store上に表示される金額（消費税込み）のとおりです。</div>
+      </div>
+      <div class="row">
+        <div class="row-key">支払方法</div>
+        <div class="row-val">Apple App Store経由（クレジットカード・キャリア決済等、Apple IDに登録された支払方法）</div>
+      </div>
+      <div class="row">
+        <div class="row-key">支払時期</div>
+        <div class="row-val">購入手続き完了時。サブスクリプションの場合は各更新期間の開始時に自動請求されます。</div>
+      </div>
+      <div class="row">
+        <div class="row-key">サービス提供時期</div>
+        <div class="row-val">購入完了後、即時ご利用いただけます。</div>
+      </div>
+      <div class="row">
+        <div class="row-key">キャンセル・返金</div>
+        <div class="row-val">デジタルコンテンツの性質上、購入後のキャンセル・返金は原則承っておりません。返金をご希望の場合はApple App Storeのサポートまでお問い合わせください。サブスクリプションは次回更新日の24時間前までにApp Storeの設定からキャンセルできます。</div>
+      </div>
+      <div class="row">
+        <div class="row-key">動作環境</div>
+        <div class="row-val">iOS（対応バージョンはApp Storeの各アプリページをご確認ください）</div>
+      </div>
+    </div>
+
+    <p style="margin-top: 24px;">※ App Store経由の決済に関する詳細は <a href="https://www.apple.com/legal/internet-services/itunes/jp/terms.html" target="_blank">Apple メディアサービス利用規約</a> もあわせてご確認ください。</p>
+  </div>
+
+  <footer class="footer">
+    © 2026 ENNOU. All rights reserved.
+  </footer>
+
+</body>
+</html>
