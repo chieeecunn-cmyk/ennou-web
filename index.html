@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ENNOU — 人と農をつなぐ。</title>
   <meta name="description" content="人と農をつなぐプロダクトを通じて、人と土の触れ合いをつくります。農体験マッチングアプリ・家庭菜園収益管理アプリを展開するENNOUのウェブサイトです。" />
+  <!-- OGP（案件ページ用にJSで動的に書き換え） -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ENNOU" />
+  <meta property="og:title" content="ENNOU — 人と農をつなぐ。" />
+  <meta property="og:description" content="人と農をつなぐプロダクトを通じて、人と土の触れ合いをつくります。" />
+  <meta property="og:image" content="https://ennou.app/og-default.png" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
@@ -42,6 +49,7 @@
     }
     .nav-logo {
       font-weight: 900; font-size: 20px; letter-spacing: 5px; color: var(--green);
+      cursor: pointer;
     }
     .nav-links { display: flex; align-items: center; gap: 36px; font-size: 13px; color: var(--ink-dim); font-weight: 500; }
     .nav-links a { transition: color .15s; }
@@ -204,126 +212,230 @@
       .footer-links { flex-wrap: wrap; gap: 16px; }
       .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
     }
+
+    /* ── 案件詳細ページ ── */
+    #post-view { display: none; background: var(--cream-soft); }
+    .pv-hero { width: 100%; aspect-ratio: 4/3; background: var(--green-soft); overflow: hidden; }
+    .pv-hero img { width: 100%; height: 100%; object-fit: cover; }
+    .pv-hero-placeholder {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #C8DBC8 0%, #E5EDE5 100%);
+      font-size: 64px; opacity: .4;
+    }
+    .pv-content { padding: 24px 20px; max-width: 640px; margin: 0 auto; }
+    .pv-category {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--green-soft); color: var(--green);
+      font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; margin-bottom: 12px;
+    }
+    .pv-title { font-size: 22px; font-weight: 900; line-height: 1.4; color: var(--ink); margin-bottom: 16px; }
+    .pv-farmer {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 16px; border-radius: 16px;
+      background: #fff; border: 1px solid var(--border); margin-bottom: 20px;
+    }
+    .pv-farmer-avatar {
+      width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+      background: var(--green-soft); flex-shrink: 0;
+    }
+    .pv-farmer-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--green-soft); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; font-size: 20px;
+    }
+    .pv-farmer-name { font-size: 14px; font-weight: 700; color: var(--ink); }
+    .pv-farmer-area { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+    .pv-info { display: flex; flex-direction: column; margin-bottom: 20px; }
+    .pv-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+    }
+    .pv-row:last-child { border-bottom: none; }
+    .pv-row-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .pv-row-label { font-size: 11px; color: var(--ink-soft); margin-bottom: 3px; }
+    .pv-row-value { font-size: 14px; color: var(--ink); font-weight: 700; line-height: 1.4; }
+    .pv-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .pv-chip {
+      background: var(--green-soft); color: var(--green);
+      font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 999px;
+    }
+    .pv-section-label { font-size: 13px; font-weight: 700; color: var(--ink-soft); letter-spacing: 2px; margin-bottom: 10px; }
+    .pv-desc { font-size: 14px; color: var(--ink-dim); line-height: 1.8; white-space: pre-wrap; }
+    .pv-dl-cta {
+      margin: 32px 20px;
+      padding: 28px 24px; background: var(--green); border-radius: 24px;
+      text-align: center; max-width: 600px; margin-left: auto; margin-right: auto;
+    }
+    .pv-dl-title { font-size: 18px; font-weight: 900; color: #fff; margin-bottom: 6px; }
+    .pv-dl-sub { font-size: 13px; color: rgba(255,255,255,.75); margin-bottom: 20px; }
+    .pv-store-btns { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+    .pv-store-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; max-width: 280px; padding: 13px 20px; border-radius: 12px;
+      background: #fff; color: var(--green);
+      font-weight: 700; font-size: 14px; cursor: pointer;
+      border: none; font-family: var(--font); text-decoration: none;
+    }
+    .pv-store-btn-android { background: rgba(255,255,255,.15); color: #fff; border: 1.5px solid rgba(255,255,255,.4); }
+    .pv-state {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 40vh; gap: 12px;
+    }
+    .pv-spinner {
+      width: 36px; height: 36px; border: 3px solid var(--green-soft);
+      border-top-color: var(--green); border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .pv-err-msg { font-size: 14px; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+    @media (min-width: 640px) {
+      .pv-hero { aspect-ratio: 16/7; }
+      .pv-store-btns { flex-direction: row; justify-content: center; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Nav -->
+  <!-- Nav（トップページ・案件ページ共通） -->
   <nav class="nav">
-    <span class="nav-logo">ENNOU</span>
-    <div class="nav-links">
+    <span class="nav-logo" onclick="location.href='/'">ENNOU</span>
+    <div class="nav-links" id="nav-site-links">
       <a href="#mission">ミッション</a>
       <a href="#products">プロダクト</a>
       <a href="#company">ABOUT</a>
     </div>
-    <a href="mailto:contact@ennou.app" class="btn-contact">お問い合わせ</a>
+    <button class="btn-contact" id="nav-cta" onclick="location.href='mailto:contact@ennou.app'">お問い合わせ</button>
   </nav>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-dot"></div>
-    <div class="hero-inner">
-      <h1>人と農を、<br><span class="hl">つなぐ</span>。</h1>
-      <p class="hero-sub">
-        人と農をつなぐプロダクトを通じて、<br>
-        人と土の触れ合いをつくります。
-      </p>
-    </div>
-  </section>
+  <!-- トップページ -->
+  <div id="site-content">
 
-  <!-- Mission -->
-  <section class="mission" id="mission">
-    <div class="mission-inner">
-      <p class="mission-label">MISSION</p>
-      <p class="mission-quote">
-        農を、もっと身近に。<br>
-        人と農の距離を縮める。
-      </p>
-      <p class="mission-sub">
-        ENNOUはプロダクトを通じて、人と農の新しいつながりをつくることを目指します。
-      </p>
-    </div>
-  </section>
-
-  <!-- Products -->
-  <section class="products" id="products">
-    <div class="products-inner">
-      <p class="section-label">PRODUCTS</p>
-      <h2>プロダクト</h2>
-      <div class="product-grid">
-
-        <div class="product-card product-card-main">
-          <div class="product-icon icon-green">ENNOU</div>
-          <div class="product-body">
-            <p class="product-name">ENNOU</p>
-            <p class="product-en">農体験マッチングアプリ</p>
-            <p class="product-desc">
-              人と農をつなぐマッチングプラットフォーム。
-              子連れファミリーや都市部の方が、農のお手伝いに気軽に参加できる機会を提供します。
-              農体験を通じた新しいつながりを生み出します。
-            </p>
-          </div>
-          <span class="product-pill pill-dev">開発中</span>
-        </div>
-
-        <div class="product-card">
-          <div class="product-icon icon-earth">MIIRI</div>
-          <div class="product-body">
-            <p class="product-name">MIIRI</p>
-            <p class="product-en">家庭菜園収益管理アプリ</p>
-            <p class="product-desc">
-              作物の収益・管理アプリ。育てた野菜の市場価値を可視化し、
-              「見えないコスト」を明らかにします。
-              記録・集計・レポートをシンプルなUIで提供します。
-            </p>
-          </div>
-          <span class="product-pill pill-dev">開発中</span>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Company -->
-  <section class="company" id="company">
-    <div class="company-inner">
-      <div>
-        <h2 style="margin-bottom: 32px;">ABOUT</h2>
-        <div class="company-table">
-          <div class="company-row">
-            <span class="company-key">屋号</span>
-            <span class="company-val">ENNOU</span>
-          </div>
-          <div class="company-row">
-            <span class="company-key">事業内容</span>
-            <span class="company-val">農に関するアプリの開発・運営</span>
-          </div>
-          <div class="company-row">
-            <span class="company-key">所在地</span>
-            <span class="company-val">WIZARD BLDG. 402, 1-4-3 Sengencho,<br>Nishi-ku, Yokohama, Kanagawa</span>
-          </div>
-          <div class="company-row">
-            <span class="company-key">連絡先</span>
-            <span class="company-val">contact@ennou.app</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="contact-col">
-        <p class="section-label">CONTACT</p>
-        <h2 style="font-size: 36px; margin-bottom: 16px;">お問い合わせ</h2>
-        <p class="contact-text">
-          事業に関するご質問、取材・掲載のご依頼、<br>
-          その他お問い合わせはメールにてお気軽にどうぞ。
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-dot"></div>
+      <div class="hero-inner">
+        <h1>人と農を、<br><span class="hl">つなぐ</span>。</h1>
+        <p class="hero-sub">
+          人と農をつなぐプロダクトを通じて、<br>
+          人と土の触れ合いをつくります。
         </p>
-        <a href="mailto:contact@ennou.app" class="contact-link">
-          ✉ contact@ennou.app
+      </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="mission" id="mission">
+      <div class="mission-inner">
+        <p class="mission-label">MISSION</p>
+        <p class="mission-quote">
+          農を、もっと身近に。<br>
+          人と農の距離を縮める。
+        </p>
+        <p class="mission-sub">
+          ENNOUはプロダクトを通じて、人と農の新しいつながりをつくることを目指します。
+        </p>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section class="products" id="products">
+      <div class="products-inner">
+        <p class="section-label">PRODUCTS</p>
+        <h2>プロダクト</h2>
+        <div class="product-grid">
+
+          <div class="product-card product-card-main">
+            <div class="product-icon icon-green">ENNOU</div>
+            <div class="product-body">
+              <p class="product-name">ENNOU</p>
+              <p class="product-en">農体験マッチングアプリ</p>
+              <p class="product-desc">
+                人と農をつなぐマッチングプラットフォーム。
+                子連れファミリーや都市部の方が、農のお手伝いに気軽に参加できる機会を提供します。
+                農体験を通じた新しいつながりを生み出します。
+              </p>
+            </div>
+            <span class="product-pill pill-dev">開発中</span>
+          </div>
+
+          <div class="product-card">
+            <div class="product-icon icon-earth">MIIRI</div>
+            <div class="product-body">
+              <p class="product-name">MIIRI</p>
+              <p class="product-en">家庭菜園収益管理アプリ</p>
+              <p class="product-desc">
+                作物の収益・管理アプリ。育てた野菜の市場価値を可視化し、
+                「見えないコスト」を明らかにします。
+                記録・集計・レポートをシンプルなUIで提供します。
+              </p>
+            </div>
+            <span class="product-pill pill-dev">開発中</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Company -->
+    <section class="company" id="company">
+      <div class="company-inner">
+        <div>
+          <h2 style="margin-bottom: 32px;">ABOUT</h2>
+          <div class="company-table">
+            <div class="company-row">
+              <span class="company-key">屋号</span>
+              <span class="company-val">ENNOU</span>
+            </div>
+            <div class="company-row">
+              <span class="company-key">事業内容</span>
+              <span class="company-val">農に関するアプリの開発・運営</span>
+            </div>
+            <div class="company-row">
+              <span class="company-key">所在地</span>
+              <span class="company-val">WIZARD BLDG. 402, 1-4-3 Sengencho,<br>Nishi-ku, Yokohama, Kanagawa</span>
+            </div>
+            <div class="company-row">
+              <span class="company-key">連絡先</span>
+              <span class="company-val">contact@ennou.app</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-col">
+          <p class="section-label">CONTACT</p>
+          <h2 style="font-size: 36px; margin-bottom: 16px;">お問い合わせ</h2>
+          <p class="contact-text">
+            事業に関するご質問、取材・掲載のご依頼、<br>
+            その他お問い合わせはメールにてお気軽にどうぞ。
+          </p>
+          <a href="mailto:contact@ennou.app" class="contact-link">
+            ✉ contact@ennou.app
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /#site-content -->
+
+  <!-- 案件詳細ページ -->
+  <div id="post-view">
+    <div id="post-content"><div class="pv-state"><div class="pv-spinner"></div></div></div>
+    <div class="pv-dl-cta">
+      <div class="pv-dl-title">ENNOUアプリで農体験を探そう</div>
+      <div class="pv-dl-sub">農家さんとボランティアをつなぐマッチングアプリ。無料で使えます。</div>
+      <div class="pv-store-btns">
+        <a id="pv-ios-btn" href="#" class="pv-store-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Storeでダウンロード
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.ennou.app" class="pv-store-btn pv-store-btn-android" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83 1.02-1.28 1.62-.7L17 12l-12.38 8.2c-.6.58-1.62.13-1.62-.7zm14.5-8.5L5.5 4.34 16.04 12 5.5 19.66 17.5 12z"/></svg>
+          Google Playでダウンロード
         </a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Footer -->
+  <!-- Footer（共通） -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-top">
@@ -332,9 +444,9 @@
           <p class="footer-desc">農に関する事業を展開しています</p>
         </div>
         <div class="footer-links">
-          <a href="#mission">ミッション</a>
-          <a href="#products">プロダクト</a>
-          <a href="#company">ABOUT</a>
+          <a href="/#mission">ミッション</a>
+          <a href="/#products">プロダクト</a>
+          <a href="/#company">ABOUT</a>
           <a href="/privacy.html">プライバシーポリシー</a>
           <a href="/legal.html">特定商取引法</a>
           <a href="mailto:contact@ennou.app">お問い合わせ</a>
@@ -347,5 +459,129 @@
     </div>
   </footer>
 
+<script>
+  const SUPABASE_URL = 'https://sznibtifwssjuwsizaea.supabase.co';
+  const SUPABASE_ANON = 'sb_publishable_2mpbBLmf27cR2IjMrSTALg_HoFFN6ig';
+  const APP_SCHEME    = 'enno';
+  const IOS_STORE     = 'https://apps.apple.com/jp/app/ennou/id6746498984';
+  const ANDROID_STORE = 'https://play.google.com/store/apps/details?id=com.ennou.app';
+
+  document.getElementById('pv-ios-btn').href = IOS_STORE;
+
+  const path   = window.location.pathname;
+  const params = new URLSearchParams(window.location.search);
+  const postId = params.get('id');
+
+  // 案件詳細ページ判定
+  if (path === '/ennou/post' && postId) {
+    document.getElementById('site-content').style.display = 'none';
+    document.getElementById('post-view').style.display = 'block';
+    document.getElementById('nav-site-links').style.display = 'none';
+    const navCta = document.getElementById('nav-cta');
+    navCta.textContent = 'アプリで開く';
+    navCta.onclick = () => openInApp();
+    loadPost(postId);
+  }
+
+  async function sbFetch(path) {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, {
+      headers: { apikey: SUPABASE_ANON, Authorization: 'Bearer ' + SUPABASE_ANON }
+    });
+    return res.json();
+  }
+
+  function fmt(isoDate) {
+    if (!isoDate) return '';
+    const d = new Date(isoDate + 'T00:00:00');
+    return d.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' });
+  }
+  function fmtT(t) { return t ? t.slice(0, 5) : ''; }
+
+  function openInApp() {
+    if (!postId) return;
+    let gone = false;
+    const onVis = () => { if (document.hidden) gone = true; };
+    document.addEventListener('visibilitychange', onVis);
+    window.location.href = APP_SCHEME + '://post/' + postId;
+    setTimeout(() => {
+      document.removeEventListener('visibilitychange', onVis);
+      if (!gone) {
+        location.href = /iPad|iPhone|iPod/.test(navigator.userAgent) ? IOS_STORE : ANDROID_STORE;
+      }
+    }, 1600);
+  }
+
+  async function loadPost(id) {
+    const el = document.getElementById('post-content');
+    try {
+      const [posts, slots] = await Promise.all([
+        sbFetch('posts?id=eq.' + id + '&select=id,title,description,location,date,farmer_id,farmer_name,start_time,end_time,max_participants,children_welcome,children_age_min,reward,items_to_bring,access,notes,thumbnail_image,images,application_deadline,category'),
+        sbFetch('post_slots?post_id=eq.' + id + '&select=id,slot_date,start_time,end_time,max_participants&order=slot_date,start_time'),
+      ]);
+
+      const post = posts?.[0];
+      if (!post) {
+        el.innerHTML = '<div class="pv-state"><span style="font-size:40px">🌾</span><p class="pv-err-msg">案件が見つかりません。<br>削除されているか、URLが間違っている可能性があります。</p></div>';
+        return;
+      }
+
+      document.title = post.title + ' — ENNOU';
+
+      let fp = null;
+      try {
+        const fps = await sbFetch('farmer_profiles?user_id=eq.' + post.farmer_id + '&select=farm_name,name,avatar_url,area');
+        fp = fps?.[0] ?? null;
+      } catch {}
+
+      const imgSrc = post.thumbnail_image || (Array.isArray(post.images) && post.images[0]);
+      const heroHtml = imgSrc
+        ? '<div class="pv-hero"><img src="' + imgSrc + '" alt="' + post.title + '" loading="lazy" /></div>'
+        : '<div class="pv-hero"><div class="pv-hero-placeholder">🌿</div></div>';
+
+      const farmerHtml = '<div class="pv-farmer">'
+        + (fp?.avatar_url
+          ? '<img class="pv-farmer-avatar" src="' + fp.avatar_url + '" alt="" loading="lazy" />'
+          : '<div class="pv-farmer-icon">👨‍🌾</div>')
+        + '<div><div class="pv-farmer-name">' + (fp?.farm_name || post.farmer_name || '農家さん') + '</div>'
+        + (fp?.area ? '<div class="pv-farmer-area">' + fp.area + '</div>' : '')
+        + '</div></div>';
+
+      let dateHtml = '';
+      if (slots && slots.length > 0) {
+        const byDate = {};
+        slots.forEach(s => { if (!byDate[s.slot_date]) byDate[s.slot_date] = []; byDate[s.slot_date].push(s); });
+        const chips = Object.entries(byDate).map(([d, ss]) =>
+          ss.map(s => '<span class="pv-chip">' + fmt(d) + (s.start_time ? ' ' + fmtT(s.start_time) + (s.end_time ? '〜' + fmtT(s.end_time) : '') : '') + '</span>').join('')
+        ).join('');
+        dateHtml = '<div class="pv-chips">' + chips + '</div>';
+      } else if (post.date) {
+        const t = fmtT(post.start_time) + (post.end_time ? '〜' + fmtT(post.end_time) : '');
+        dateHtml = '<div class="pv-chips"><span class="pv-chip">' + fmt(post.date) + (t ? ' ' + t : '') + '</span></div>';
+      }
+
+      const rows = [
+        post.location ? '<div class="pv-row"><span class="pv-row-icon">📍</span><div><div class="pv-row-label">場所</div><div class="pv-row-value">' + post.location + '</div></div></div>' : '',
+        dateHtml ? '<div class="pv-row"><span class="pv-row-icon">🗓</span><div><div class="pv-row-label">開催日程</div>' + dateHtml + '</div></div>' : '',
+        post.max_participants ? '<div class="pv-row"><span class="pv-row-icon">👥</span><div><div class="pv-row-label">定員</div><div class="pv-row-value">' + post.max_participants + '名</div></div></div>' : '',
+        post.children_welcome ? '<div class="pv-row"><span class="pv-row-icon">👧</span><div><div class="pv-row-label">子ども</div><div class="pv-row-value">子ども可' + (post.children_age_min ? '（' + post.children_age_min + '歳〜）' : '') + '</div></div></div>' : '',
+        post.items_to_bring ? '<div class="pv-row"><span class="pv-row-icon">🎒</span><div><div class="pv-row-label">持ち物</div><div class="pv-row-value">' + post.items_to_bring + '</div></div></div>' : '',
+        post.access ? '<div class="pv-row"><span class="pv-row-icon">🚉</span><div><div class="pv-row-label">アクセス</div><div class="pv-row-value">' + post.access + '</div></div></div>' : '',
+        post.application_deadline ? '<div class="pv-row"><span class="pv-row-icon">📅</span><div><div class="pv-row-label">申込締切</div><div class="pv-row-value">' + fmt(post.application_deadline) + '</div></div></div>' : '',
+      ].join('');
+
+      el.innerHTML = heroHtml
+        + '<div class="pv-content">'
+        + (post.category ? '<div class="pv-category">🌱 ' + post.category + '</div>' : '')
+        + '<h1 class="pv-title">' + post.title + '</h1>'
+        + farmerHtml
+        + '<div class="pv-info">' + rows + '</div>'
+        + (post.description ? '<div class="pv-section-label">案件の詳細</div><p class="pv-desc">' + post.description + '</p>' : '')
+        + '</div>';
+
+    } catch {
+      el.innerHTML = '<div class="pv-state"><span style="font-size:40px">⚠️</span><p class="pv-err-msg">読み込みに失敗しました。<br>通信状況を確認して再度お試しください。</p></div>';
+    }
+  }
+</script>
 </body>
 </html>
