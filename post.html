@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>農体験 — ENNOU</title>
+  <meta name="description" content="農家とボランティアをつなぐ農体験マッチングアプリ「ENNOU」の案件詳細です。" />
+  <!-- OGP（SNSシェア用・汎用） -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ENNOU" />
+  <meta property="og:title" content="農体験 — ENNOU" />
+  <meta property="og:description" content="農家さんと一緒に農体験しませんか？ENNOUアプリで詳細を見る。" />
+  <meta property="og:image" content="https://ennou.app/og-default.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" /></noscript>
+  <style>
+    :root {
+      --green:      #1F5A3D;
+      --green-deep: #163F2C;
+      --green-soft: #E5EDE5;
+      --cream:      #FAF7F0;
+      --earth:      #B08A4A;
+      --earth-soft: #F2E9D9;
+      --ink:        #1A1A1A;
+      --ink-dim:    #5C5C5C;
+      --ink-soft:   #8C8C8C;
+      --border:     #ECE6D7;
+      --font: "Noto Sans JP", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font); font-weight: 500; background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Top bar ── */
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 20px;
+      background: rgba(250,247,240,.95);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .topbar-logo { font-weight: 900; font-size: 18px; letter-spacing: 4px; color: var(--green); }
+    .topbar-btn {
+      padding: 8px 18px; border-radius: 999px;
+      background: var(--green); color: #fff;
+      font-weight: 700; font-size: 13px; border: none; cursor: pointer;
+      font-family: var(--font);
+    }
+
+    /* ── Hero image ── */
+    .hero {
+      width: 100%; aspect-ratio: 4/3; background: var(--green-soft);
+      overflow: hidden; position: relative;
+    }
+    .hero img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-placeholder {
+      width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, #C8DBC8 0%, #E5EDE5 100%);
+    }
+    .hero-placeholder-icon { font-size: 64px; opacity: .4; }
+
+    /* ── Content ── */
+    .content { padding: 24px 20px; max-width: 640px; margin: 0 auto; }
+
+    .category-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--green-soft); color: var(--green);
+      font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    .post-title { font-size: 22px; font-weight: 900; line-height: 1.4; color: var(--ink); margin-bottom: 16px; }
+
+    /* ── Farmer card ── */
+    .farmer-card {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 16px; border-radius: 16px;
+      background: #fff; border: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+    .farmer-avatar {
+      width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+      background: var(--green-soft); flex-shrink: 0;
+    }
+    .farmer-avatar-placeholder {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--green-soft); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .farmer-name { font-size: 14px; font-weight: 700; color: var(--ink); }
+    .farmer-area { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+
+    /* ── Info rows ── */
+    .info-section { display: flex; flex-direction: column; gap: 0; margin-bottom: 20px; }
+    .info-row {
+      display: flex; align-items: flex-start; gap: 10px; padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+    .info-label { font-size: 11px; color: var(--ink-soft); margin-bottom: 3px; }
+    .info-value { font-size: 14px; color: var(--ink); font-weight: 700; line-height: 1.4; }
+
+    /* ── Slot chips ── */
+    .slot-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .slot-chip {
+      background: var(--green-soft); color: var(--green);
+      font-size: 12px; font-weight: 700;
+      padding: 5px 12px; border-radius: 999px;
+    }
+
+    /* ── Description ── */
+    .section-title { font-size: 13px; font-weight: 700; color: var(--ink-soft); letter-spacing: 2px; margin-bottom: 10px; }
+    .description { font-size: 14px; color: var(--ink-dim); line-height: 1.8; white-space: pre-wrap; }
+
+    /* ── Download CTA ── */
+    .download-cta {
+      margin: 32px 20px;
+      padding: 28px 24px;
+      background: var(--green); border-radius: 24px;
+      text-align: center; max-width: 600px; margin-left: auto; margin-right: auto;
+    }
+    .download-cta-title { font-size: 18px; font-weight: 900; color: #fff; margin-bottom: 6px; }
+    .download-cta-sub { font-size: 13px; color: rgba(255,255,255,.75); margin-bottom: 20px; }
+    .store-btns { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+    .store-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; max-width: 280px;
+      padding: 13px 20px; border-radius: 12px;
+      background: #fff; color: var(--green);
+      font-weight: 700; font-size: 14px; cursor: pointer;
+      border: none; font-family: var(--font);
+      text-decoration: none;
+    }
+    .store-btn:hover { opacity: .9; }
+    .store-btn-android { background: rgba(255,255,255,.15); color: #fff; border: 1.5px solid rgba(255,255,255,.4); }
+
+    /* ── Footer ── */
+    .footer {
+      padding: 24px 20px; text-align: center;
+      color: var(--ink-soft); font-size: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .footer a { color: var(--green); }
+
+    /* ── Loading / Error ── */
+    .state-box {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 40vh; gap: 12px;
+    }
+    .spinner {
+      width: 36px; height: 36px; border: 3px solid var(--green-soft);
+      border-top-color: var(--green); border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .error-icon { font-size: 40px; }
+    .error-msg { font-size: 14px; color: var(--ink-soft); text-align: center; line-height: 1.6; }
+
+    @media (min-width: 640px) {
+      .hero { aspect-ratio: 16/7; }
+      .store-btns { flex-direction: row; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 上部バー -->
+<nav class="topbar">
+  <a href="/" class="topbar-logo">ENNOU</a>
+  <button class="topbar-btn" onclick="openInApp()">アプリで開く</button>
+</nav>
+
+<!-- メインコンテンツ -->
+<div id="app">
+  <div class="state-box"><div class="spinner"></div></div>
+</div>
+
+<!-- アプリDLバナー -->
+<div class="download-cta">
+  <div class="download-cta-title">ENNOUアプリで農体験を探そう</div>
+  <div class="download-cta-sub">農家さんとボランティアをつなぐマッチングアプリ。無料で使えます。</div>
+  <div class="store-btns">
+    <a id="ios-btn" href="#" class="store-btn" onclick="return handleStoreClick('ios')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      App Storeでダウンロード
+    </a>
+    <a id="android-btn" href="https://play.google.com/store/apps/details?id=com.ennou.app" class="store-btn store-btn-android" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83 1.02-1.28 1.62-.7L17 12l-12.38 8.2c-.6.58-1.62.13-1.62-.7zm14.5-8.5L5.5 4.34 16.04 12 5.5 19.66 17.5 12z"/></svg>
+      Google Playでダウンロード
+    </a>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>© 2025 ENNOU &nbsp;·&nbsp; <a href="/privacy.html">プライバシーポリシー</a> &nbsp;·&nbsp; <a href="/legal.html">特定商取引法</a></p>
+</footer>
+
+<script>
+  const SUPABASE_URL = 'https://sznibtifwssjuwsizaea.supabase.co';
+  const SUPABASE_ANON = 'sb_publishable_2mpbBLmf27cR2IjMrSTALg_HoFFN6ig';
+  const APP_SCHEME   = 'enno';
+  const IOS_STORE    = 'https://apps.apple.com/jp/app/ennou/id6746498984'; // TODO: 公開後にApp IDを更新
+  const ANDROID_STORE = 'https://play.google.com/store/apps/details?id=com.ennou.app';
+
+  document.getElementById('ios-btn').href = IOS_STORE;
+
+  const postId = new URLSearchParams(location.search).get('id');
+
+  async function sbFetch(path) {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+      headers: { apikey: SUPABASE_ANON, Authorization: `Bearer ${SUPABASE_ANON}` }
+    });
+    return res.json();
+  }
+
+  function fmt(isoDate) {
+    if (!isoDate) return '';
+    const d = new Date(isoDate + 'T00:00:00');
+    return d.toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' });
+  }
+  function fmtTime(t) { return t ? t.slice(0, 5) : ''; }
+
+  function openInApp() {
+    if (!postId) return;
+    const schemeUrl = `${APP_SCHEME}://post/${postId}`;
+    let gone = false;
+    const onVis = () => { if (document.hidden) gone = true; };
+    document.addEventListener('visibilitychange', onVis);
+    window.location.href = schemeUrl;
+    setTimeout(() => {
+      document.removeEventListener('visibilitychange', onVis);
+      if (!gone) {
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        location.href = isIOS ? IOS_STORE : ANDROID_STORE;
+      }
+    }, 1600);
+  }
+
+  function handleStoreClick(platform) {
+    location.href = platform === 'ios' ? IOS_STORE : ANDROID_STORE;
+    return false;
+  }
+
+  async function load() {
+    const app = document.getElementById('app');
+    if (!postId) {
+      app.innerHTML = `<div class="content"><div class="state-box"><span class="error-icon">🌾</span><p class="error-msg">案件が見つかりません。<br>URLを確認してください。</p></div></div>`;
+      return;
+    }
+
+    try {
+      const [posts, slots, farmers] = await Promise.all([
+        sbFetch(`posts?id=eq.${postId}&select=id,title,description,location,date,farmer_id,farmer_name,start_time,end_time,max_participants,children_welcome,children_age_min,reward,items_to_bring,access,notes,thumbnail_image,images,application_deadline,category`),
+        sbFetch(`post_slots?post_id=eq.${postId}&select=id,slot_date,start_time,end_time,max_participants&order=slot_date,start_time`),
+        Promise.resolve(null),
+      ]);
+
+      const post = posts?.[0];
+      if (!post) {
+        app.innerHTML = `<div class="content"><div class="state-box"><span class="error-icon">🌾</span><p class="error-msg">案件が見つかりません。<br>削除されているか、URLが間違っている可能性があります。</p></div></div>`;
+        return;
+      }
+
+      // ページタイトル・OGP更新（クローラーには効かないがSNS以外のリンクプレビューに有効）
+      document.title = `${post.title} — ENNOU`;
+      document.querySelector('meta[property="og:title"]').setAttribute('content', post.title + ' — ENNOU');
+      if (post.description) document.querySelector('meta[property="og:description"]').setAttribute('content', post.description.slice(0, 120));
+      const ogImg = post.thumbnail_image || (Array.isArray(post.images) && post.images[0]);
+      if (ogImg) document.querySelector('meta[property="og:image"]').setAttribute('content', ogImg);
+
+      // 農家プロフィール取得
+      let fp = null;
+      try {
+        const fps = await sbFetch(`farmer_profiles?user_id=eq.${post.farmer_id}&select=farm_name,name,avatar_url,area`);
+        fp = fps?.[0] ?? null;
+      } catch {}
+
+      // 画像HTML
+      const imgSrc = post.thumbnail_image || (Array.isArray(post.images) && post.images[0]);
+      const heroHtml = imgSrc
+        ? `<img src="${imgSrc}" alt="${post.title}" loading="lazy" />`
+        : `<div class="hero-placeholder"><span class="hero-placeholder-icon">🌿</span></div>`;
+
+      // 農家カードHTML
+      const farmerHtml = `
+        <div class="farmer-card">
+          ${fp?.avatar_url
+            ? `<img class="farmer-avatar" src="${fp.avatar_url}" alt="${fp.farm_name || fp.name || ''}" loading="lazy" />`
+            : `<div class="farmer-avatar-placeholder">👨‍🌾</div>`}
+          <div>
+            <div class="farmer-name">${fp?.farm_name || post.farmer_name || '農家さん'}</div>
+            ${fp?.area ? `<div class="farmer-area">${fp.area}</div>` : ''}
+          </div>
+        </div>`;
+
+      // 日程HTML
+      let dateHtml = '';
+      if (slots && slots.length > 0) {
+        const byDate = {};
+        slots.forEach(s => {
+          if (!byDate[s.slot_date]) byDate[s.slot_date] = [];
+          byDate[s.slot_date].push(s);
+        });
+        const chips = Object.entries(byDate).map(([d, ss]) => {
+          const dateLabel = fmt(d);
+          return ss.map(s => {
+            const t = fmtTime(s.start_time) + (s.end_time ? `〜${fmtTime(s.end_time)}` : '');
+            return `<span class="slot-chip">${dateLabel}${t ? ' ' + t : ''}</span>`;
+          }).join('');
+        }).join('');
+        dateHtml = `<div class="slot-chips">${chips}</div>`;
+      } else if (post.date) {
+        const t = fmtTime(post.start_time) + (post.end_time ? `〜${fmtTime(post.end_time)}` : '');
+        dateHtml = `<div class="slot-chips"><span class="slot-chip">${fmt(post.date)}${t ? ' ' + t : ''}</span></div>`;
+      }
+
+      // 子ども可
+      const childrenHtml = post.children_welcome
+        ? `<div class="info-row"><span class="info-icon">👧</span><div><div class="info-label">子ども</div><div class="info-value">子ども可${post.children_age_min ? `（${post.children_age_min}歳〜）` : ''}</div></div></div>`
+        : '';
+
+      // 定員
+      const capHtml = post.max_participants
+        ? `<div class="info-row"><span class="info-icon">👥</span><div><div class="info-label">定員</div><div class="info-value">${post.max_participants}名</div></div></div>`
+        : '';
+
+      // 持ち物・アクセス
+      const itemsHtml = post.items_to_bring
+        ? `<div class="info-row"><span class="info-icon">🎒</span><div><div class="info-label">持ち物</div><div class="info-value">${post.items_to_bring}</div></div></div>`
+        : '';
+      const accessHtml = post.access
+        ? `<div class="info-row"><span class="info-icon">🚉</span><div><div class="info-label">アクセス</div><div class="info-value">${post.access}</div></div></div>`
+        : '';
+      const deadlineHtml = post.application_deadline
+        ? `<div class="info-row"><span class="info-icon">📅</span><div><div class="info-label">申込締切</div><div class="info-value">${fmt(post.application_deadline)}</div></div></div>`
+        : '';
+
+      app.innerHTML = `
+        <div class="hero">${heroHtml}</div>
+        <div class="content">
+          ${post.category ? `<div class="category-tag">🌱 ${post.category}</div>` : ''}
+          <h1 class="post-title">${post.title}</h1>
+          ${farmerHtml}
+          <div class="info-section">
+            ${post.location ? `<div class="info-row"><span class="info-icon">📍</span><div><div class="info-label">場所</div><div class="info-value">${post.location}</div></div></div>` : ''}
+            ${dateHtml ? `<div class="info-row"><span class="info-icon">🗓</span><div><div class="info-label">開催日程</div>${dateHtml}</div></div>` : ''}
+            ${capHtml}
+            ${childrenHtml}
+            ${itemsHtml}
+            ${accessHtml}
+            ${deadlineHtml}
+          </div>
+          ${post.description ? `<div class="section-title">案件の詳細</div><p class="description">${post.description}</p>` : ''}
+        </div>`;
+    } catch (e) {
+      app.innerHTML = `<div class="content"><div class="state-box"><span class="error-icon">⚠️</span><p class="error-msg">読み込みに失敗しました。<br>通信状況を確認して再度お試しください。</p></div></div>`;
+    }
+  }
+
+  load();
+</script>
+</body>
+</html>
