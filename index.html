@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ENNOU — 農で、社会をつなぐ。</title>
-  <meta name="description" content="ENNOUは農業に関する事業を展開しています。援農マッチングアプリ「ENNOU」や家庭菜園収益管理アプリ「MIIRI」を運営しています。" />
+  <title>ENNOU — 人と農をつなぐ。</title>
+  <meta name="description" content="人と農をつなぐプロダクトを通じて、人と土の触れ合いをつくります。農体験マッチングアプリ・家庭菜園収益管理アプリを展開するENNOUのウェブサイトです。" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" /></noscript>
   <style>
     :root {
       --green:      #1F5A3D;
@@ -27,7 +28,7 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font); background: var(--cream-soft); color: var(--ink); -webkit-font-smoothing: antialiased; line-height: 1; }
+    body { font-family: var(--font); font-weight: 500; background: var(--cream-soft); color: var(--ink); -webkit-font-smoothing: antialiased; line-height: 1; }
     a { color: inherit; text-decoration: none; }
     ul { list-style: none; }
 
@@ -97,7 +98,7 @@
     .mission-inner { max-width: var(--max); margin: 0 auto; text-align: center; position: relative; }
     .mission-label { font-size: 12px; letter-spacing: 6px; font-weight: 700; color: rgba(255,255,255,.5); margin-bottom: 20px; }
     .mission-quote {
-      font-size: 36px; font-weight: 800; line-height: 1.55; letter-spacing: -.8px; margin-bottom: 20px;
+      font-size: 36px; font-weight: 900; line-height: 1.55; letter-spacing: -.8px; margin-bottom: 20px;
     }
     .mission-sub { font-size: 16px; line-height: 1.9; color: rgba(255,255,255,.72); max-width: 620px; margin: 0 auto; }
 
@@ -106,7 +107,7 @@
     .products-inner { max-width: var(--max); margin: 0 auto; }
     .section-label { font-size: 12px; letter-spacing: 6px; font-weight: 700; color: var(--green); margin-bottom: 16px; }
     h2 {
-      font-size: 40px; font-weight: 800; color: var(--ink);
+      font-size: 40px; font-weight: 900; color: var(--ink);
       letter-spacing: -1.5px; line-height: 1.15; margin-bottom: 28px;
     }
     .product-grid { display: flex; flex-direction: column; gap: 24px; }
@@ -126,7 +127,7 @@
     .icon-green { background: var(--green); }
     .icon-earth { background: var(--earth); }
     .product-body { flex: 1; }
-    .product-name { font-weight: 800; font-size: 26px; letter-spacing: 2px; color: var(--ink); margin-bottom: 8px; }
+    .product-name { font-weight: 900; font-size: 26px; letter-spacing: 2px; color: var(--ink); margin-bottom: 8px; }
     .product-en { font-size: 13px; color: var(--ink-soft); font-weight: 500; margin-bottom: 16px; letter-spacing: .5px; }
     .product-desc { font-size: 15px; line-height: 1.85; color: var(--ink-dim); max-width: 560px; }
     .product-pill {
@@ -215,7 +216,7 @@
       <a href="#products">プロダクト</a>
       <a href="#company">ABOUT</a>
     </div>
-    <a href="mailto:ennou.contact@gmail.com" class="btn-contact">お問い合わせ</a>
+    <a href="mailto:contact@ennou.app" class="btn-contact">お問い合わせ</a>
   </nav>
 
   <!-- Hero -->
@@ -262,7 +263,7 @@
               農体験を通じた新しいつながりを生み出します。
             </p>
           </div>
-          <span class="product-pill pill-live">リリース中</span>
+          <span class="product-pill pill-dev">開発中</span>
         </div>
 
         <div class="product-card">
@@ -303,7 +304,7 @@
           </div>
           <div class="company-row">
             <span class="company-key">連絡先</span>
-            <span class="company-val">ennou.contact@gmail.com</span>
+            <span class="company-val">contact@ennou.app</span>
           </div>
         </div>
       </div>
@@ -315,8 +316,8 @@
           事業に関するご質問、取材・掲載のご依頼、<br>
           その他お問い合わせはメールにてお気軽にどうぞ。
         </p>
-        <a href="mailto:ennou.contact@gmail.com" class="contact-link">
-          ✉ ennou.contact@gmail.com
+        <a href="mailto:contact@ennou.app" class="contact-link">
+          ✉ contact@ennou.app
         </a>
       </div>
     </div>
@@ -336,7 +337,7 @@
           <a href="#company">ABOUT</a>
           <a href="/privacy.html">プライバシーポリシー</a>
           <a href="/legal.html">特定商取引法</a>
-          <a href="mailto:ennou.contact@gmail.com">お問い合わせ</a>
+          <a href="mailto:contact@ennou.app">お問い合わせ</a>
         </div>
       </div>
       <div class="footer-bottom">
