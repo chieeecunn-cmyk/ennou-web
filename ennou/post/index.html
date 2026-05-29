@@ -161,6 +161,25 @@
     .error-icon { font-size: 40px; }
     .error-msg { font-size: 14px; color: var(--ink-soft); text-align: center; line-height: 1.6; }
 
+    /* ── Apply button ── */
+    .apply-wrap {
+      padding: 24px 20px 8px;
+      max-width: 640px; margin: 0 auto;
+    }
+    .apply-btn {
+      display: block; width: 100%;
+      padding: 16px 24px;
+      background: var(--green); color: #fff;
+      font-weight: 900; font-size: 16px; font-family: var(--font);
+      text-align: center; border-radius: 16px;
+      border: none; cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(31,90,61,.25);
+      transition: opacity .15s;
+    }
+    .apply-btn:hover { opacity: .88; }
+    .apply-btn:active { opacity: .75; }
+
     @media (min-width: 640px) {
       .hero { aspect-ratio: 16/7; }
       .store-btns { flex-direction: row; justify-content: center; }
@@ -356,6 +375,9 @@
             ${deadlineHtml}
           </div>
           ${post.description ? `<div class="section-title">案件の詳細</div><p class="description">${post.description}</p>` : ''}
+        </div>
+        <div class="apply-wrap">
+          <a href="../apply/?id=${postId}" class="apply-btn">参加申し込みをする</a>
         </div>`;
     } catch (e) {
       app.innerHTML = `<div class="content"><div class="state-box"><span class="error-icon">⚠️</span><p class="error-msg">読み込みに失敗しました。<br>通信状況を確認して再度お試しください。</p></div></div>`;
