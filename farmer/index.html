@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>農家さん・畑オーナーへ — ENNOU</title>
+  <meta name="description" content="農体験の参加者を無料で募集できるアプリ「ENNOU」。農家さん・畑オーナー向けのご案内ページです。" />
+  <meta property="og:title" content="農家さん・畑オーナーへ — ENNOU" />
+  <meta property="og:description" content="農体験の参加者を無料で募集。参加者を自分で選べて、チャットで当日までやりとりできます。" />
+  <meta property="og:image" content="https://ennou.app/og-default.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" /></noscript>
+  <style>
+    :root {
+      --green:      #1F5A3D;
+      --green-deep: #163F2C;
+      --green-soft: #E5EDE5;
+      --green-pale: #EAF3DE;
+      --cream:      #FAF7F0;
+      --earth:      #B08A4A;
+      --ink:        #1A1A1A;
+      --ink-dim:    #5C5C5C;
+      --ink-soft:   #8C8C8C;
+      --border:     #ECE6D7;
+      --sun:        #E88B3F;
+      --font: "Noto Sans JP", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font); font-weight: 500; background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Topbar ── */
+    .topbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 20px;
+      background: rgba(250,247,240,.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .topbar-logo { font-weight: 900; font-size: 18px; letter-spacing: 4px; color: var(--green); }
+    .topbar-btn {
+      padding: 8px 18px; border-radius: 999px;
+      background: var(--green); color: #fff;
+      font-weight: 700; font-size: 13px; border: none; cursor: pointer;
+      font-family: var(--font); text-decoration: none;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--green);
+      padding: 64px 24px 56px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.15); border-radius: 999px;
+      padding: 5px 14px; margin-bottom: 24px;
+      font-size: 11px; font-weight: 700; color: #fff; letter-spacing: 2px;
+    }
+    .hero-title {
+      font-size: clamp(28px, 7vw, 46px);
+      font-weight: 900; color: #fff; line-height: 1.35;
+      margin-bottom: 20px;
+    }
+    .hero-title em { color: #A8D56E; font-style: normal; }
+    .hero-sub {
+      font-size: 15px; color: rgba(255,255,255,.8);
+      line-height: 1.8; margin-bottom: 36px; max-width: 480px; margin-left: auto; margin-right: auto;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; color: var(--green);
+      font-weight: 900; font-size: 16px;
+      padding: 16px 32px; border-radius: 16px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,.2);
+    }
+    .hero-cta:hover { opacity: .9; }
+    .hero-note { font-size: 12px; color: rgba(255,255,255,.6); margin-top: 12px; }
+
+    /* ── Section ── */
+    .section { max-width: 640px; margin: 0 auto; padding: 56px 24px; }
+    .section-eyebrow {
+      font-size: 10px; font-weight: 700; letter-spacing: 3px; color: var(--green);
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .section-title { font-size: clamp(22px, 5vw, 32px); font-weight: 900; color: var(--ink); line-height: 1.4; margin-bottom: 16px; }
+    .section-sub { font-size: 14px; color: var(--ink-dim); line-height: 1.8; }
+
+    /* ── Benefits ── */
+    .benefits { display: flex; flex-direction: column; gap: 14px; margin-top: 32px; }
+    .benefit-card {
+      display: flex; align-items: flex-start; gap: 16px;
+      background: #fff; border-radius: 18px; padding: 20px;
+      border: 1px solid var(--border);
+    }
+    .benefit-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: var(--green-pale); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+    .benefit-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+    .benefit-body { font-size: 13px; color: var(--ink-dim); line-height: 1.7; }
+
+    /* ── Steps ── */
+    .steps { display: flex; flex-direction: column; gap: 0; margin-top: 32px; }
+    .step {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding-bottom: 28px; position: relative;
+    }
+    .step:not(:last-child)::before {
+      content: ''; position: absolute;
+      left: 19px; top: 44px; bottom: 0;
+      width: 2px; background: var(--green-pale);
+    }
+    .step-num {
+      width: 40px; height: 40px; border-radius: 20px;
+      background: var(--green); color: #fff;
+      font-weight: 900; font-size: 16px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .step-content { padding-top: 8px; }
+    .step-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+    .step-body { font-size: 13px; color: var(--ink-dim); line-height: 1.7; }
+
+    /* ── Testimonial ── */
+    .testimonial-band {
+      background: var(--green-pale);
+      padding: 48px 24px;
+      text-align: center;
+    }
+    .testimonial-band .section-title { max-width: 480px; margin-left: auto; margin-right: auto; }
+    .testimonial-note { font-size: 13px; color: var(--ink-dim); line-height: 1.8; max-width: 400px; margin: 16px auto 0; }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 0; margin-top: 24px; }
+    .faq-item {
+      padding: 18px 4px; border-bottom: 1px solid var(--border);
+    }
+    .faq-q { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+    .faq-a { font-size: 13px; color: var(--ink-dim); line-height: 1.7; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--green); padding: 64px 24px; text-align: center;
+    }
+    .cta-title { font-size: clamp(24px, 6vw, 36px); font-weight: 900; color: #fff; line-height: 1.35; margin-bottom: 16px; }
+    .cta-sub { font-size: 14px; color: rgba(255,255,255,.75); margin-bottom: 32px; line-height: 1.8; }
+    .store-btns { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+    .store-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; max-width: 300px;
+      padding: 14px 24px; border-radius: 14px;
+      background: #fff; color: var(--green);
+      font-weight: 700; font-size: 15px;
+      text-decoration: none;
+    }
+    .store-btn:hover { opacity: .9; }
+    .store-btn-android { background: rgba(255,255,255,.15); color: #fff; border: 1.5px solid rgba(255,255,255,.4); }
+
+    /* ── Footer ── */
+    .footer {
+      padding: 24px 20px; text-align: center;
+      color: var(--ink-soft); font-size: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .footer a { color: var(--green); }
+
+    @media (min-width: 600px) {
+      .benefits { display: grid; grid-template-columns: 1fr 1fr; }
+      .store-btns { flex-direction: row; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a href="/" class="topbar-logo">ENNOU</a>
+  <a href="https://apps.apple.com/jp/app/ennou/id6746498984" class="topbar-btn" target="_blank">アプリを開く</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">🌱 農家さん・畑オーナーへ</div>
+  <h1 class="hero-title">
+    農体験の参加者を、<br>
+    <em>無料で募集しよう。</em>
+  </h1>
+  <p class="hero-sub">
+    ENNOUは、農家さんが体験農業の参加者を集めるためのアプリです。
+    案件を投稿するだけで、農体験に興味のある人たちに届きます。
+  </p>
+  <a href="https://apps.apple.com/jp/app/ennou/id6746498984" class="hero-cta" target="_blank">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+    無料ではじめる（App Store）
+  </a>
+  <p class="hero-note">登録・利用は完全無料</p>
+</section>
+
+<!-- BENEFITS -->
+<section class="section">
+  <p class="section-eyebrow">WHY ENNOU</p>
+  <h2 class="section-title">農家さんが<br>ENNOUを使う理由</h2>
+  <p class="section-sub">登録は無料。難しい操作なし。スマホだけで始められます。</p>
+
+  <div class="benefits">
+    <div class="benefit-card">
+      <div class="benefit-icon">🆓</div>
+      <div>
+        <div class="benefit-title">完全無料で使える</div>
+        <div class="benefit-body">掲載料・手数料・月額料金はすべて無料。コストゼロで参加者を集められます。</div>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">✅</div>
+      <div>
+        <div class="benefit-title">参加者を自分で選べる</div>
+        <div class="benefit-body">申し込みが来たら承認・お断りを自分で決められます。知らない人を招くのが不安な方も安心。</div>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">💬</div>
+      <div>
+        <div class="benefit-title">チャットで安心のやりとり</div>
+        <div class="benefit-body">当日の持ち物・集合場所・雨天時の対応など、参加者との細かいやりとりもアプリ内で完結。</div>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">📸</div>
+      <div>
+        <div class="benefit-title">インスタと連携できる</div>
+        <div class="benefit-body">案件ページのURLをInstagramのプロフィールやストーリーに貼るだけ。フォロワーがそのまま申し込めます。</div>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">👨‍👩‍👧</div>
+      <div>
+        <div class="benefit-title">子連れファミリーも集まる</div>
+        <div class="benefit-body">子ども可の設定をするだけで、農体験を探しているファミリー層にリーチできます。</div>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🌱</div>
+      <div>
+        <div class="benefit-title">収益の柱をもう一本</div>
+        <div class="benefit-body">販売・直販に加えて、体験提供という新しい選択肢。お礼に野菜を渡す形でも十分喜ばれます。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section style="background: #fff; padding: 0;">
+  <div class="section">
+    <p class="section-eyebrow">HOW IT WORKS</p>
+    <h2 class="section-title">使い方は、<br>かんたん3ステップ。</h2>
+    <p class="section-sub">スマホさえあれば、今日から始められます。</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">アプリをDLして農家として登録</div>
+          <div class="step-body">App StoreまたはGoogle PlayからENNOUをダウンロード。「農家として登録」を選んで、農場プロフィールを作成します。5分もあれば完了。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">農体験の案件を投稿する</div>
+          <div class="step-body">日程・場所・体験の内容・人数を入力して投稿。写真を添付するとより魅力が伝わります。Instagramに案件URLを貼ることも可能。</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">申し込みを承認して当日を迎える</div>
+          <div class="step-body">参加者から申し込みが来たら確認して承認。チャットで持ち物・集合場所を共有して、当日を楽しみましょう。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL BAND -->
+<div class="testimonial-band">
+  <h2 class="section-title" style="color: var(--green);">
+    「知らない人を畑に<br>入れるのは不安…」
+  </h2>
+  <p class="testimonial-note">
+    そんな農家さんのために、ENNOUは<strong>参加者を自分で承認する仕組み</strong>にしています。
+    申し込みメッセージを見てから、参加してほしい人を選べます。
+    無理にすべての申し込みを受ける必要はありません。
+  </p>
+</div>
+
+<!-- FAQ -->
+<section class="section">
+  <p class="section-eyebrow">FAQ</p>
+  <h2 class="section-title">よくある質問</h2>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">本当に無料ですか？</div>
+      <div class="faq-a">はい、完全無料です。掲載料・手数料・月額料金は一切かかりません。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">農業の規模は関係ありますか？</div>
+      <div class="faq-a">関係ありません。大規模農家から区民農園・家庭菜園まで、どなたでも使えます。「一緒に作業してくれる仲間を探したい」という方にも向いています。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">参加者へのお礼は必要ですか？</div>
+      <div class="faq-a">ENNOUは基本的に無償ボランティア形式です。収穫した野菜などをお礼にする農家さんが多いです。必須ではありません。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">イベント保険などは必要ですか？</div>
+      <div class="faq-a">ENNOUでは保険の加入を推奨していますが、必須ではありません。参加者への事前説明（持ち物・注意事項）はチャットでできます。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">一度に何件まで案件を投稿できますか？</div>
+      <div class="faq-a">複数の案件を同時に掲載できます。日程をスロットで管理できるので、同じ案件に複数の日付を設定することも可能です。</div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <h2 class="cta-title">まずは、<br>登録してみてください。</h2>
+  <p class="cta-sub">
+    難しい操作はありません。<br>
+    スマホで5分あれば農場プロフィールが完成します。
+  </p>
+  <div class="store-btns">
+    <a href="https://apps.apple.com/jp/app/ennou/id6746498984" class="store-btn" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      App Storeでダウンロード
+    </a>
+    <a href="https://play.google.com/store/apps/details?id=com.ennou.app" class="store-btn store-btn-android" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 20.5v-17c0-.83 1.02-1.28 1.62-.7L17 12l-12.38 8.2c-.6.58-1.62.13-1.62-.7zm14.5-8.5L5.5 4.34 16.04 12 5.5 19.66 17.5 12z"/></svg>
+      Google Playでダウンロード
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>© 2025 ENNOU &nbsp;·&nbsp; <a href="/privacy.html">プライバシーポリシー</a> &nbsp;·&nbsp; <a href="/legal.html">特定商取引法</a> &nbsp;·&nbsp; <a href="/">ENNOUトップ</a></p>
+</footer>
+
+</body>
+</html>
