@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ENNOU — 畑に出る日を、もっと気軽に。</title>
+  <meta name="description" content="農家さんとつながる農体験マッチングアプリ。子連れファミリーや都市部の方が、農のお手伝いに気軽に参加できます。無料でダウンロード。" />
+  <meta property="og:title" content="ENNOU — 畑に出る日を、もっと気軽に。" />
+  <meta property="og:description" content="農家さんとつながる農体験マッチングアプリ。子連れファミリーや都市部の方が気軽に参加できます。" />
+  <meta property="og:image" content="https://ennou.app/images/ennou-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" /></noscript>
+  <style>
+    :root {
+      --green:      #1F5A3D;
+      --green-deep: #163F2C;
+      --green-soft: #E5EDE5;
+      --green-tint: #EEF3EE;
+      --green-lt:   #C7DDB5;
+      --green-pale: #E3EDD3;
+      --cream:      #F5F1E8;
+      --cream-soft: #FAF7F0;
+      --earth:      #B08A4A;
+      --sun:        #E88B3F;
+      --ink:        #1A1A1A;
+      --ink-dim:    #5C5C5C;
+      --ink-soft:   #8C8C8C;
+      --border:     #ECE6D7;
+      --font: "Noto Sans JP", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+      --max: 780px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); font-weight: 500; background: var(--cream-soft); color: var(--ink); -webkit-font-smoothing: antialiased; line-height: 1; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Nav ── */
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 40px; border-bottom: 1px solid var(--border);
+      background: rgba(250,247,240,.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-back { display: flex; align-items: center; gap: 5px; font-size: 13px; color: var(--ink-soft); transition: color .15s; }
+    .nav-back:hover { color: var(--ink); }
+    .nav-logo { font-weight: 900; font-size: 17px; letter-spacing: 5px; color: var(--green); }
+    .nav-store {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 9px 18px; border-radius: 999px; background: var(--ink);
+      color: #fff; font-weight: 700; font-size: 12px; border: none;
+      cursor: pointer; transition: background .15s; font-family: var(--font);
+    }
+    .nav-store:hover { background: #333; }
+
+    /* ── Hero ── */
+    .hero { padding: 56px 40px 52px; background: var(--cream-soft); position: relative; overflow: hidden; }
+    .hero-dot {
+      position: absolute; inset: 0;
+      background-image: radial-gradient(#1F5A3D22 1.2px, transparent 1.2px);
+      background-size: 24px 24px; opacity: .5; pointer-events: none;
+    }
+    .hero-inner { max-width: var(--max); margin: 0 auto; position: relative; display: flex; align-items: flex-start; gap: 36px; }
+    .hero-icon { width: 88px; height: 88px; border-radius: 22px; flex-shrink: 0; margin-top: 4px; }
+    .hero-text { flex: 1; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 6px 14px; border-radius: 999px; background: var(--green-pale);
+      font-size: 11px; font-weight: 700; color: var(--green); margin-bottom: 16px; letter-spacing: .5px;
+    }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+    .hero-title { font-size: 46px; font-weight: 900; line-height: 1.2; letter-spacing: -2px; color: var(--ink); margin-bottom: 18px; }
+    .hero-sub { font-size: 16px; line-height: 1.9; color: var(--ink-dim); margin-bottom: 28px; }
+    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-dl {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 14px 26px; border-radius: 999px; background: var(--ink);
+      color: #fff; font-weight: 700; font-size: 14px;
+      transition: background .15s;
+    }
+    .btn-dl:hover { background: #333; }
+
+    /* ── Concept band ── */
+    .concept { padding: 64px 40px; background: var(--green); }
+    .concept-inner { max-width: var(--max); margin: 0 auto; text-align: center; }
+    .concept-eyebrow { font-size: 11px; letter-spacing: 6px; font-weight: 700; color: rgba(255,255,255,.45); margin-bottom: 22px; }
+    .concept-quote { font-size: 27px; font-weight: 900; line-height: 1.65; color: #fff; margin-bottom: 18px; letter-spacing: -.2px; }
+    .concept-hl { color: var(--sun); }
+    .concept-sub { font-size: 15px; line-height: 1.9; color: rgba(255,255,255,.65); }
+
+    /* ── Sections ── */
+    .sec { padding: 64px 40px; }
+    .sec-inner { max-width: var(--max); margin: 0 auto; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .eyebrow-line { width: 16px; height: 1px; background: var(--green); }
+    .eyebrow-text { font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--green); }
+    .sec-title { font-size: 34px; font-weight: 900; line-height: 1.3; letter-spacing: -1px; color: var(--ink); margin-bottom: 28px; }
+    .sec-body { font-size: 15px; line-height: 1.85; color: var(--ink-dim); }
+    .sec-body + .sec-body { margin-top: 12px; }
+    .hl { color: var(--green); font-weight: 700; }
+
+    /* ── Cards ── */
+    .cards { display: flex; flex-direction: column; gap: 16px; }
+    .card { background: #fff; border-radius: 22px; border: 1px solid var(--border); padding: 26px 28px; }
+    .card-green { background: var(--green-pale); border-color: transparent; }
+    .card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .card-ico { font-size: 20px; }
+    .card-title { font-size: 17px; font-weight: 800; color: var(--ink); }
+
+    /* ── Name cards ── */
+    .name-pair { display: flex; gap: 12px; margin-top: 22px; }
+    .name-card { flex: 1; border-radius: 14px; padding: 16px; text-align: center; background: var(--cream-soft); border: 1px solid var(--border); }
+    .name-kanji { font-size: 22px; font-weight: 800; letter-spacing: 3px; margin-bottom: 4px; }
+    .name-roman { font-size: 9px; font-weight: 700; letter-spacing: 3px; margin-bottom: 8px; }
+    .name-note { font-size: 12px; color: var(--ink-dim); }
+
+    /* ── Steps ── */
+    .steps { display: flex; flex-direction: column; gap: 12px; }
+    .step { display: flex; gap: 16px; background: #fff; border-radius: 18px; padding: 20px 22px; border: 1px solid var(--border); align-items: flex-start; }
+    .step-num { width: 30px; height: 30px; border-radius: 50%; background: var(--green); color: #fff; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-title { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+    .step-body { font-size: 13px; line-height: 1.7; color: var(--ink-dim); }
+
+    /* ── Feature band ── */
+    .feature { padding: 64px 40px; }
+    .feature-inner { max-width: var(--max); margin: 0 auto; }
+    .bullets { display: flex; flex-direction: column; gap: 10px; margin-top: 22px; }
+    .bullet { display: flex; align-items: center; gap: 10px; }
+    .b-dot { width: 20px; height: 20px; border-radius: 50%; background: var(--green); color: #fff; font-size: 11px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .b-text { font-size: 13px; font-weight: 600; color: var(--ink); }
+
+    /* ── Chat mock ── */
+    .chat { background: #fff; border-radius: 18px; padding: 18px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; margin: 22px 0; }
+    .chat-row { display: flex; align-items: flex-end; gap: 8px; }
+    .chat-me { flex-direction: row-reverse; }
+    .chat-av { width: 24px; height: 24px; border-radius: 50%; background: var(--earth); flex-shrink: 0; }
+    .chat-bbl { max-width: 75%; background: var(--cream-soft); border-radius: 14px; padding: 10px 12px; font-size: 12px; color: var(--ink); line-height: 1.6; }
+    .chat-bbl-me { background: var(--green); color: #fff; }
+
+    /* ── Chips ── */
+    .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .chip { background: #fff; border: 1px solid var(--border); border-radius: 999px; padding: 7px 14px; font-size: 12px; font-weight: 600; color: var(--green); }
+
+    /* ── Feature list ── */
+    .feat-list { display: flex; flex-direction: column; }
+    .feat-item { display: flex; align-items: flex-start; gap: 14px; padding: 15px 0; border-bottom: 1px solid var(--border); }
+    .feat-item:last-child { border-bottom: none; }
+    .feat-ico { width: 36px; height: 36px; border-radius: 10px; background: var(--green-pale); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .feat-text { flex: 1; font-size: 14px; line-height: 1.75; color: var(--ink-dim); padding-top: 4px; }
+
+    /* ── Download CTA ── */
+    .cta { padding: 80px 40px; background: var(--green); text-align: center; }
+    .cta-inner { max-width: var(--max); margin: 0 auto; }
+    .cta-title { font-size: 36px; font-weight: 900; color: #fff; letter-spacing: -1px; line-height: 1.3; margin-bottom: 12px; }
+    .cta-sub { font-size: 15px; color: rgba(255,255,255,.7); line-height: 1.8; margin-bottom: 36px; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 36px; border-radius: 14px; background: #fff;
+      color: var(--ink); font-weight: 700; font-size: 15px;
+      transition: opacity .15s;
+    }
+    .cta-btn:hover { opacity: .88; }
+    .cta-note { font-size: 12px; color: rgba(255,255,255,.35); margin-top: 14px; }
+
+    /* ── Footer ── */
+    .footer { padding: 36px 40px 28px; background: var(--ink); color: #fff; }
+    .footer-inner { max-width: var(--max); margin: 0 auto; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,.1); flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-weight: 900; font-size: 17px; letter-spacing: 5px; color: rgba(255,255,255,.85); }
+    .footer-sub { font-size: 12px; color: rgba(255,255,255,.3); margin-top: 8px; }
+    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,.4); }
+    .footer-links a:hover { color: rgba(255,255,255,.75); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,.2); }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .nav { padding: 14px 20px; }
+      .hero { padding: 44px 20px 48px; }
+      .hero-inner { flex-direction: column; gap: 18px; }
+      .hero-icon { width: 72px; height: 72px; border-radius: 18px; }
+      .hero-title { font-size: 32px; letter-spacing: -1px; }
+      .hero-sub { font-size: 14px; }
+      .concept { padding: 52px 20px; }
+      .concept-quote { font-size: 21px; }
+      .sec { padding: 52px 20px; }
+      .sec-title { font-size: 26px; }
+      .feature { padding: 52px 20px; }
+      .cta { padding: 60px 20px; }
+      .cta-title { font-size: 28px; }
+      .footer { padding: 28px 20px 20px; }
+      .footer-top { flex-direction: column; }
+      .name-pair { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="/" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      ENNOU
+    </a>
+    <span class="nav-logo">ENNOU</span>
+    <a href="https://apps.apple.com/jp/app/ennou/id6761766213" class="nav-store" target="_blank" rel="noopener">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      App Store
+    </a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-dot"></div>
+    <div class="hero-inner">
+      <img class="hero-icon" src="/images/ennou-icon.png" alt="ENNOU">
+      <div class="hero-text">
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          農体験マッチングアプリ
+        </div>
+        <h1 class="hero-title">畑に出る日を、<br>もっと気軽に。</h1>
+        <p class="hero-sub">
+          泥だらけになって野菜を収穫する。農家さんと話しながら草を抜く。<br>
+          ENNOUは、そんな「普通の一日」をもっと身近にするアプリです。
+        </p>
+        <div class="hero-cta">
+          <a href="https://apps.apple.com/jp/app/ennou/id6761766213" class="btn-dl" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+            App Storeでダウンロード
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Concept -->
+  <section class="concept">
+    <div class="concept-inner">
+      <p class="concept-eyebrow">OUR BELIEF</p>
+      <p class="concept-quote">
+        「子どもが土の中から<span class="concept-hl">大きな芋</span>を引っ張り出して、<br>目を輝かせる。」
+      </p>
+      <p class="concept-sub">
+        そんな「普通の一日」が、意外となかなかない暮らしの中で。
+      </p>
+    </div>
+  </section>
+
+  <!-- What is ENNOU -->
+  <section class="sec" style="background:#fff">
+    <div class="sec-inner">
+      <div class="eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">WHAT IS ENNOU</span>
+      </div>
+      <h2 class="sec-title">ENNOUって、<br>どんなアプリ？</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="card-head">
+            <span class="card-ico">☀️</span>
+            <span class="card-title">農業って、たのしい。</span>
+          </div>
+          <p class="sec-body">泥だらけになって野菜を収穫する。農家さんと話しながら草を抜く。子どもが土の中から大きな芋を引っ張り出して、目を輝かせる。</p>
+          <p class="sec-body" style="margin-top:12px">そんな<span class="hl">「普通の一日」</span>を、もっと身近に。ENNOUは、畑に出る機会を気軽にするアプリです。</p>
+        </div>
+        <div class="card card-green">
+          <div class="card-head">
+            <span class="card-ico">🌿</span>
+            <span class="card-title" style="color:var(--green)">農家さんを、一番大切に。</span>
+          </div>
+          <p class="sec-body">ENNOUで一番大事にしているのは、<span class="hl">農家さん</span>です。</p>
+          <p class="sec-body" style="margin-top:12px">体験の場を提供することで<span class="hl">収益の柱を一本増やす</span>——そんな選択肢をつくりたいと思っています。来てほしい人を農家さん自身が承認できる仕組みで、安心して募集できます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Name -->
+  <section class="sec" style="background:var(--cream-soft)">
+    <div class="sec-inner">
+      <div class="card">
+        <div class="card-head">
+          <span class="card-ico">🌱</span>
+          <span class="card-title">「縁農」という名前に込めた想い</span>
+        </div>
+        <p class="sec-body"><span class="hl">「援農（えんのう）」</span>とは、農家のお手伝いのこと。</p>
+        <p class="sec-body" style="margin-top:12px">でも私たちが届けたいのはそれだけじゃなくて、農家さんと人との間に<span class="hl">「縁（えん）」</span>が生まれる瞬間です。</p>
+        <p class="sec-body" style="margin-top:12px">だから「援農」ではなく、<span class="hl">「縁農（えんのう）」</span>と呼んでいます。</p>
+        <div class="name-pair">
+          <div class="name-card">
+            <div class="name-kanji" style="color:var(--green)">縁農</div>
+            <div class="name-roman" style="color:var(--green)">EN-NOU</div>
+            <div class="name-note">縁を結ぶ</div>
+          </div>
+          <div class="name-card">
+            <div class="name-kanji" style="color:var(--sun)">援農</div>
+            <div class="name-roman" style="color:var(--sun)">EN-NOU</div>
+            <div class="name-note">農を助ける</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="sec" style="background:#fff">
+    <div class="sec-inner">
+      <div class="eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">HOW IT WORKS</span>
+      </div>
+      <h2 class="sec-title">はじめかたは、<br>かんたん。</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">気になる体験を探す</div>
+            <div class="step-body">地域・日付・ジャンルから、農家さんを見つける。子ども可・初心者歓迎で絞り込みもできる。</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">申し込んで、チャット</div>
+            <div class="step-body">プロフィールを送って、農家さんが承認。当日の持ち物や集合場所をチャットで相談。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature: Discover -->
+  <section class="feature" style="background:var(--cream-soft)">
+    <div class="feature-inner">
+      <div class="eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">01 / DISCOVER</span>
+      </div>
+      <h2 class="sec-title" style="margin-top:14px">顔の見える農家から、<br>選んで申し込む。</h2>
+      <p class="sec-body">気になる地域・日付・体験ジャンルで検索。子ども可、駐車場あり、初心者歓迎まで一目でわかる。</p>
+      <div class="bullets">
+        <div class="bullet"><div class="b-dot">✓</div><span class="b-text">全国の登録農家を検索</span></div>
+        <div class="bullet"><div class="b-dot">✓</div><span class="b-text">条件で絞り込みフィルター</span></div>
+        <div class="bullet"><div class="b-dot">✓</div><span class="b-text">農家さんの紹介文と写真</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature: Connect -->
+  <section class="feature" style="background:var(--cream)">
+    <div class="feature-inner">
+      <div class="eyebrow">
+        <div class="eyebrow-line"></div>
+        <span class="eyebrow-text">02 / CONNECT</span>
+      </div>
+      <h2 class="sec-title" style="margin-top:14px">申し込みから当日まで、<br>チャットで安心。</h2>
+      <p class="sec-body">持ち物、集合場所、雨天時の対応。気になることは事前にチャットで相談できる。</p>
+      <div class="chat">
+        <div class="chat-row">
+          <div class="chat-av"></div>
+          <div class="chat-bbl">当日は長靴と帽子があると助かります🌱</div>
+        </div>
+        <div class="chat-row chat-me">
+          <div class="chat-bbl chat-bbl-me">了解です！9時に駐車場へ伺います。</div>
+        </div>
+        <div class="chat-row">
+          <div class="chat-av"></div>
+          <div class="chat-bbl">お待ちしてます。お気をつけて。</div>
+        </div>
+      </div>
+      <div class="bullets">
+        <div class="bullet"><div class="b-dot">✓</div><span class="b-text">農家さんと直接やりとり</span></div>
+        <div class="bullet"><div class="b-dot">✓</div><span class="b-text">農家さんが参加者を承認</span></div>
+        <div class="bullet"><div class="b-dot">✓</div><span class="b-text">当日も気持ちよく迎えてもらえる</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Family -->
+  <section class="sec" style="background:var(--cream-soft)">
+    <div class="sec-inner">
+      <div class="card card-green">
+        <div class="card-head">
+          <span class="card-ico">👨‍👩‍👧</span>
+          <span class="card-title" style="color:var(--green)">子連れファミリーも、参加OK。</span>
+        </div>
+        <p class="sec-body">ENNOUは<span class="hl">子ども可・駐車場あり・初心者歓迎</span>といったタグで絞り込めるので、家族みんなで安心して参加できます。</p>
+        <p class="sec-body" style="margin-top:12px">土の感触、虫との出会い、収穫したばかりの野菜の味。ちいさな子どもにこそ味わってほしい体験を、農家さんと一緒に。</p>
+        <div class="chip-row">
+          <span class="chip">👶 0-3歳OK</span>
+          <span class="chip">🧒 4-12歳OK</span>
+          <span class="chip">🚗 駐車場あり</span>
+          <span class="chip">🌂 雨天時連絡</span>
+          <span class="chip">👟 長靴貸出</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature list -->
+  <section class="sec" style="background:#fff">
+    <div class="sec-inner">
+      <div class="card">
+        <div class="card-head">
+          <span class="card-ico">🌸</span>
+          <span class="card-title">ENNOUでできること</span>
+        </div>
+        <div class="feat-list">
+          <div class="feat-item">
+            <div class="feat-ico">🔍</div>
+            <div class="feat-text">近くの農家さんを探して、農作業体験に参加できる</div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-ico">💬</div>
+            <div class="feat-text">チャットで農家さんと直接やりとり。当日の不安もなし</div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-ico">👪</div>
+            <div class="feat-text">子連れ・初心者歓迎の体験も多数。家族で参加OK</div>
+          </div>
+          <div class="feat-item">
+            <div class="feat-ico">🌾</div>
+            <div class="feat-text">区民農園・貸し農園でも、一緒に作業する仲間を募集できる</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-inner">
+      <h2 class="cta-title">畑に出る日を、<br>もっと気軽に。</h2>
+      <p class="cta-sub">農家さんとつながる農体験マッチングアプリ。<br>無料ではじめられます。</p>
+      <a href="https://apps.apple.com/jp/app/ennou/id6761766213" class="cta-btn" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        App Storeでダウンロード
+      </a>
+      <p class="cta-note">iOS対応 · 無料でご利用いただけます</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo">ENNOU</div>
+          <p class="footer-sub">農体験マッチングアプリ</p>
+        </div>
+        <div class="footer-links">
+          <a href="/">トップページ</a>
+          <a href="/ennou/privacy.html">プライバシーポリシー</a>
+          <a href="/ennou/termofservice.html">利用規約</a>
+          <a href="mailto:contact@ennou.app">お問い合わせ</a>
+        </div>
+      </div>
+      <p class="footer-copy">© 2026 ENNOU. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
