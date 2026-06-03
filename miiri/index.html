@@ -4,186 +4,175 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MIIRI — 育てた野菜の、実入りを見える化</title>
-  <meta name="description" content="家庭菜園で育てた野菜の市場価値を可視化。収穫を記録するだけで、毎月の「実入り」がレシートになるアプリ。" />
+  <meta name="description" content="家庭菜園で育てた野菜の市場価値を可視化。収穫を記録するだけで毎月の実入りがレシートになるアプリ。" />
   <meta property="og:title" content="MIIRI — 育てた野菜の、実入りを見える化" />
-  <meta property="og:description" content="収穫を記録するだけで、毎月の実入りがレシートになる家庭菜園収益管理アプリ。" />
+  <meta property="og:description" content="収穫を記録するだけで毎月の実入りがレシートになる家庭菜園収益管理アプリ。" />
   <meta property="og:image" content="https://ennou.app/images/miiri-icon.png" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" /></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Inter:wght@600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&family=Inter:wght@600;700;800;900&display=swap" /></noscript>
   <style>
     :root {
-      --green:      #1F5A3D;
-      --green-deep: #163F2C;
-      --green-soft: #E8F0E5;
-      --green-tint: #EEF3EE;
-      --green-pale: #D6E8CB;
-      --cream:      #F5F1E8;
-      --cream-soft: #FAF7F2;
-      --earth:      #B08A4A;
-      --earth-soft: #F2E9D9;
-      --ink:        #1A1A1A;
-      --ink-dim:    #5C5C5C;
-      --ink-soft:   #8C8C8C;
-      --border:     #ECE6D7;
-      --font: "Noto Sans JP", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
-      --max: 780px;
+      --green:       #1F5A3D;
+      --green-deep:  #163F2C;
+      --green-soft:  #E5EDE5;
+      --green-tint:  #EEF3EE;
+      --cream:       #F5F1E8;
+      --cream-soft:  #FAF7F0;
+      --earth:       #B08A4A;
+      --sun:         #E88B3F;
+      --ink:         #1A1A1A;
+      --ink-dim:     #5C5C5C;
+      --ink-soft:    #8C8C8C;
+      --border:      #ECE6D7;
+      --font-ja:     "Noto Sans JP", "Hiragino Kaku Gothic ProN", system-ui, sans-serif;
+      --font-en:     "Inter", system-ui, sans-serif;
+      --max:         1000px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font); font-weight: 500; background: var(--cream-soft); color: var(--ink); -webkit-font-smoothing: antialiased; line-height: 1; }
+    body { font-family: var(--font-ja); font-weight: 500; background: var(--cream-soft); color: var(--ink); -webkit-font-smoothing: antialiased; line-height: 1; }
     a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
 
     /* ── Nav ── */
     .nav {
       display: flex; align-items: center; justify-content: space-between;
       padding: 18px 40px; border-bottom: 1px solid var(--border);
-      background: rgba(250,247,242,.92);
+      background: rgba(250,247,240,.92);
       backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
       position: sticky; top: 0; z-index: 100;
     }
-    .nav-back { display: flex; align-items: center; gap: 5px; font-size: 13px; color: var(--ink-soft); transition: color .15s; }
+    .nav-logo { font-family: var(--font-en); font-weight: 900; font-size: 18px; letter-spacing: 4px; color: var(--green); }
+    .nav-links { display: flex; align-items: center; gap: 32px; font-size: 13px; color: var(--ink-dim); font-weight: 500; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-back { display: flex; align-items: center; gap: 5px; font-size: 13px; color: var(--ink-soft); }
     .nav-back:hover { color: var(--ink); }
-    .nav-logo { font-weight: 900; font-size: 17px; letter-spacing: 5px; color: var(--green); }
     .nav-store {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 9px 18px; border-radius: 999px; background: var(--ink);
-      color: #fff; font-weight: 700; font-size: 12px;
-      transition: background .15s; font-family: var(--font);
+      padding: 9px 20px; border-radius: 999px; background: var(--ink);
+      color: #fff; font-weight: 700; font-size: 13px; border: none; cursor: pointer;
+      font-family: var(--font-ja); display: inline-flex; align-items: center; gap: 6px;
+      transition: background .15s;
     }
     .nav-store:hover { background: #333; }
 
     /* ── Hero ── */
-    .hero { padding: 56px 40px 52px; background: var(--cream-soft); position: relative; overflow: hidden; }
-    .hero-dot {
-      position: absolute; inset: 0;
-      background-image: radial-gradient(#1F5A3D18 1.2px, transparent 1.2px);
-      background-size: 24px 24px; opacity: .6; pointer-events: none;
+    .hero { padding: 52px 40px 60px; background: var(--cream-soft); }
+    .hero-inner { max-width: var(--max); margin: 0 auto; }
+    .hero-tag {
+      display: inline-block; font-family: var(--font-en); font-size: 11px; font-weight: 700;
+      letter-spacing: 3px; color: var(--green); background: var(--green-tint);
+      padding: 6px 14px; border-radius: 999px; margin-bottom: 32px;
     }
-    .hero-inner { max-width: var(--max); margin: 0 auto; position: relative; display: flex; align-items: flex-start; gap: 36px; }
-    .hero-icon { width: 88px; height: 88px; border-radius: 22px; flex-shrink: 0; margin-top: 4px; }
-    .hero-text { flex: 1; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      padding: 6px 14px; border-radius: 999px; background: var(--green-pale);
-      font-size: 11px; font-weight: 700; color: var(--green); margin-bottom: 16px; letter-spacing: .5px;
+    .hero h1 {
+      font-size: clamp(42px, 10vw, 68px); font-weight: 900; line-height: 1.1;
+      letter-spacing: -2px; color: var(--ink); margin-bottom: 20px;
     }
-    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
-    .hero-title { font-size: 46px; font-weight: 900; line-height: 1.2; letter-spacing: -2px; color: var(--ink); margin-bottom: 18px; }
-    .hero-sub { font-size: 16px; line-height: 1.9; color: var(--ink-dim); margin-bottom: 28px; }
-    .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn-dl {
-      display: inline-flex; align-items: center; gap: 9px;
-      padding: 14px 26px; border-radius: 999px; background: var(--ink);
-      color: #fff; font-weight: 700; font-size: 14px;
-      transition: background .15s;
+    .hero-sub { font-size: clamp(14px, 3vw, 17px); line-height: 1.85; color: var(--ink-dim); max-width: 520px; margin-bottom: 40px; }
+    .hero-divider { border: none; border-top: 1px solid var(--border); margin-bottom: 32px; }
+    .hero-meta { display: flex; gap: 40px; flex-wrap: wrap; }
+    .hero-meta-item { display: flex; flex-direction: column; gap: 5px; }
+    .hero-meta-label { font-family: var(--font-en); font-size: 10px; color: var(--ink-soft); letter-spacing: 2px; font-weight: 700; }
+    .hero-meta-value { font-size: 14px; color: var(--ink); font-weight: 700; }
+
+    /* ── Mission ── */
+    .mission { padding: 64px 40px; background: var(--green); }
+    .mission-inner { max-width: var(--max); margin: 0 auto; text-align: center; }
+    .mission-label { font-family: var(--font-en); font-size: 11px; letter-spacing: 6px; font-weight: 700; color: rgba(255,255,255,.45); margin-bottom: 24px; }
+    .mission-quote { font-size: clamp(20px, 4vw, 30px); font-weight: 900; line-height: 1.65; letter-spacing: -.3px; color: #fff; margin-bottom: 16px; }
+    .mission-hl { color: #A8D98A; }
+    .mission-sub { font-size: 15px; line-height: 1.9; color: rgba(255,255,255,.65); max-width: 540px; margin: 0 auto; }
+
+    /* ── How it works ── */
+    .how { padding: 64px 40px; background: #fff; }
+    .how-inner { max-width: var(--max); margin: 0 auto; }
+    .section-label { font-family: var(--font-en); font-size: 11px; letter-spacing: 5px; font-weight: 700; color: var(--green); margin-bottom: 14px; }
+    .section-h2 { font-size: clamp(26px, 5vw, 38px); font-weight: 900; color: var(--ink); letter-spacing: -1px; line-height: 1.2; margin-bottom: 40px; }
+    .steps { display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; border: 1.5px solid var(--border); }
+    .step { display: flex; gap: 24px; padding: 28px 32px; border-bottom: 1px solid var(--border); align-items: flex-start; }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      font-family: var(--font-en); width: 40px; height: 40px; border-radius: 50%;
+      background: var(--green-tint); display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 900; color: var(--green); flex-shrink: 0; margin-top: 2px;
     }
-    .btn-dl:hover { background: #333; }
+    .step h3 { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 6px; line-height: 1.4; }
+    .step p  { font-size: 14px; color: var(--ink-dim); line-height: 1.8; }
 
-    /* ── Concept band ── */
-    .concept { padding: 64px 40px; background: var(--green); }
-    .concept-inner { max-width: var(--max); margin: 0 auto; text-align: center; }
-    .concept-eyebrow { font-size: 11px; letter-spacing: 6px; font-weight: 700; color: rgba(255,255,255,.45); margin-bottom: 22px; }
-    .concept-quote { font-size: 26px; font-weight: 900; line-height: 1.65; color: #fff; margin-bottom: 18px; letter-spacing: -.2px; }
-    .concept-num { color: #A8D98A; }
-    .concept-sub { font-size: 15px; line-height: 1.9; color: rgba(255,255,255,.65); }
-
-    /* ── Sections ── */
-    .sec { padding: 64px 40px; }
-    .sec-inner { max-width: var(--max); margin: 0 auto; }
-    .eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-    .eyebrow-line { width: 16px; height: 1px; background: var(--green); }
-    .eyebrow-text { font-size: 11px; font-weight: 700; letter-spacing: 3px; color: var(--green); }
-    .sec-title { font-size: 34px; font-weight: 900; line-height: 1.3; letter-spacing: -1px; color: var(--ink); margin-bottom: 28px; }
-    .sec-body { font-size: 15px; line-height: 1.85; color: var(--ink-dim); }
-    .hl { color: var(--green); font-weight: 700; }
-
-    /* ── Cards ── */
-    .cards { display: flex; flex-direction: column; gap: 16px; }
-    .card { background: #fff; border-radius: 22px; border: 1px solid var(--border); padding: 26px 28px; }
-    .card-green { background: var(--green-pale); border-color: transparent; }
-    .card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-    .card-ico { font-size: 20px; }
-    .card-title { font-size: 17px; font-weight: 800; color: var(--ink); }
-
-    /* ── Receipt mock ── */
+    /* ── Receipt ── */
+    .receipt-section { padding: 64px 40px; background: var(--cream-soft); }
+    .receipt-inner { max-width: var(--max); margin: 0 auto; }
     .receipt {
-      background: #fff; border-radius: 18px; border: 1px solid var(--border);
-      padding: 28px 24px; margin: 24px 0; font-family: "Courier New", monospace;
+      background: #fff; border-radius: 20px; border: 1.5px solid var(--border);
+      padding: 32px 28px; max-width: 480px; margin: 40px 0;
+      font-family: "Courier New", monospace;
     }
-    .receipt-header { text-align: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px dashed var(--border); }
-    .receipt-app { font-weight: 900; font-size: 18px; letter-spacing: 4px; color: var(--green); font-family: var(--font); }
-    .receipt-label { font-size: 10px; letter-spacing: 3px; color: var(--ink-soft); margin-top: 3px; font-family: var(--font); }
-    .receipt-date { font-size: 11px; color: var(--ink-soft); margin-top: 8px; font-family: var(--font); }
-    .receipt-rows { display: flex; flex-direction: column; gap: 0; }
-    .receipt-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #F5F1E8; }
+    .receipt-header { text-align: center; margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px dashed var(--border); }
+    .receipt-app { font-family: var(--font-en); font-weight: 900; font-size: 20px; letter-spacing: 5px; color: var(--green); }
+    .receipt-label { font-family: var(--font-en); font-size: 9px; letter-spacing: 3px; color: var(--ink-soft); margin-top: 3px; }
+    .receipt-date { font-family: var(--font-ja); font-size: 11px; color: var(--ink-soft); margin-top: 8px; }
+    .receipt-rows { display: flex; flex-direction: column; }
+    .receipt-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid #F5F1E8; }
     .receipt-row:last-child { border-bottom: none; }
-    .receipt-name { font-size: 13px; color: var(--ink); font-family: var(--font); }
+    .receipt-name { font-family: var(--font-ja); font-size: 13px; color: var(--ink); }
     .receipt-price { font-size: 13px; font-weight: 700; color: var(--ink); }
-    .receipt-total { margin-top: 16px; padding-top: 16px; border-top: 2px solid var(--ink); display: flex; justify-content: space-between; align-items: baseline; }
-    .receipt-total-label { font-size: 13px; color: var(--ink-dim); font-family: var(--font); }
-    .receipt-total-amount { font-size: 28px; font-weight: 900; color: var(--green); letter-spacing: -1px; }
-    .receipt-note { font-size: 10px; color: var(--ink-soft); margin-top: 4px; text-align: right; font-family: var(--font); }
+    .receipt-total { margin-top: 18px; padding-top: 18px; border-top: 2px solid var(--ink); display: flex; justify-content: space-between; align-items: baseline; }
+    .receipt-total-label { font-family: var(--font-ja); font-size: 13px; color: var(--ink-dim); }
+    .receipt-total-amount { font-family: var(--font-en); font-size: 30px; font-weight: 900; color: var(--green); letter-spacing: -1px; }
+    .receipt-note { font-family: var(--font-ja); font-size: 10px; color: var(--ink-soft); margin-top: 5px; text-align: right; }
 
-    /* ── Steps ── */
-    .steps { display: flex; flex-direction: column; gap: 12px; }
-    .step { display: flex; gap: 16px; background: #fff; border-radius: 18px; padding: 20px 22px; border: 1px solid var(--border); align-items: flex-start; }
-    .step-num { width: 30px; height: 30px; border-radius: 50%; background: var(--green); color: #fff; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .step-title { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
-    .step-body { font-size: 13px; line-height: 1.7; color: var(--ink-dim); }
+    /* ── Philosophy ── */
+    .philosophy { padding: 64px 40px; background: #fff; }
+    .philosophy-inner { max-width: var(--max); margin: 0 auto; }
+    .phil-list { display: flex; flex-direction: column; gap: 0; border-radius: 20px; overflow: hidden; border: 1.5px solid var(--border); background: var(--cream-soft); }
+    .phil-item { display: flex; gap: 28px; padding: 28px 32px; border-bottom: 1px solid var(--border); align-items: flex-start; }
+    .phil-item:last-child { border-bottom: none; }
+    .phil-index { font-family: var(--font-en); font-size: 11px; font-weight: 700; color: var(--ink-soft); letter-spacing: 1px; min-width: 28px; padding-top: 3px; }
+    .phil-body h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    .phil-body p  { font-size: 14px; color: var(--ink-dim); line-height: 1.8; }
 
-    /* ── Feature list ── */
-    .feat-list { display: flex; flex-direction: column; }
-    .feat-item { display: flex; align-items: flex-start; gap: 14px; padding: 15px 0; border-bottom: 1px solid var(--border); }
-    .feat-item:last-child { border-bottom: none; }
-    .feat-ico { width: 36px; height: 36px; border-radius: 10px; background: var(--green-soft); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-    .feat-text { flex: 1; font-size: 14px; line-height: 1.75; color: var(--ink-dim); padding-top: 4px; }
-
-    /* ── Download CTA ── */
-    .cta { padding: 80px 40px; background: var(--green); text-align: center; }
-    .cta-inner { max-width: var(--max); margin: 0 auto; }
-    .cta-title { font-size: 36px; font-weight: 900; color: #fff; letter-spacing: -1px; line-height: 1.3; margin-bottom: 12px; }
-    .cta-sub { font-size: 15px; color: rgba(255,255,255,.7); line-height: 1.8; margin-bottom: 36px; }
-    .cta-btn {
+    /* ── Download ── */
+    .download { padding: 80px 40px; background: var(--green); text-align: center; }
+    .download-inner { max-width: var(--max); margin: 0 auto; }
+    .download h2 { font-size: clamp(24px, 5vw, 36px); font-weight: 900; color: #fff; letter-spacing: -.5px; margin-bottom: 10px; }
+    .download p { font-size: 15px; color: rgba(255,255,255,.65); margin-bottom: 36px; line-height: 1.7; }
+    .store-btn {
       display: inline-flex; align-items: center; gap: 10px;
-      padding: 16px 36px; border-radius: 14px; background: #fff;
-      color: var(--ink); font-weight: 700; font-size: 15px;
-      transition: opacity .15s;
+      background: #fff; color: var(--ink);
+      font-weight: 700; font-size: 15px; padding: 16px 44px;
+      border-radius: 14px; transition: opacity .15s;
     }
-    .cta-btn:hover { opacity: .88; }
-    .cta-note { font-size: 12px; color: rgba(255,255,255,.35); margin-top: 14px; }
+    .store-btn:hover { opacity: .88; }
+    .store-note { font-size: 12px; color: rgba(255,255,255,.4); margin-top: 12px; }
 
     /* ── Footer ── */
-    .footer { padding: 36px 40px 28px; background: var(--ink); color: #fff; }
+    footer { padding: 32px 40px 24px; background: var(--ink); }
     .footer-inner { max-width: var(--max); margin: 0 auto; }
-    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,.1); flex-wrap: wrap; gap: 16px; }
-    .footer-logo { font-weight: 900; font-size: 17px; letter-spacing: 5px; color: rgba(255,255,255,.85); }
-    .footer-sub { font-size: 12px; color: rgba(255,255,255,.3); margin-top: 8px; }
-    .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,.1); margin-bottom: 20px; flex-wrap: wrap; gap: 20px; }
+    .footer-logo { font-family: var(--font-en); font-weight: 900; font-size: 16px; letter-spacing: 4px; color: rgba(255,255,255,.85); }
+    .footer-desc { font-size: 12px; color: rgba(255,255,255,.35); margin-top: 8px; line-height: 1.7; }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
     .footer-links a { font-size: 13px; color: rgba(255,255,255,.4); }
     .footer-links a:hover { color: rgba(255,255,255,.75); }
-    .footer-copy { font-size: 12px; color: rgba(255,255,255,.2); }
+    .footer-copy { font-size: 12px; color: rgba(255,255,255,.25); }
 
     /* ── Mobile ── */
     @media (max-width: 640px) {
       .nav { padding: 14px 20px; }
-      .hero { padding: 44px 20px 48px; }
-      .hero-inner { flex-direction: column; gap: 18px; }
-      .hero-icon { width: 72px; height: 72px; border-radius: 18px; }
-      .hero-title { font-size: 32px; letter-spacing: -1px; }
-      .hero-sub { font-size: 14px; }
-      .concept { padding: 52px 20px; }
-      .concept-quote { font-size: 20px; }
-      .sec { padding: 52px 20px; }
-      .sec-title { font-size: 26px; }
-      .cta { padding: 60px 20px; }
-      .cta-title { font-size: 28px; }
-      .footer { padding: 28px 20px 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 44px 20px 52px; }
+      .hero-meta { gap: 24px; }
+      .mission { padding: 52px 20px; }
+      .how, .receipt-section, .philosophy { padding: 52px 20px; }
+      .step, .phil-item { padding: 20px; }
+      .receipt { max-width: 100%; }
+      .receipt-total-amount { font-size: 26px; }
+      .download { padding: 60px 20px; }
+      footer { padding: 28px 20px 20px; }
       .footer-top { flex-direction: column; }
-      .receipt-total-amount { font-size: 24px; }
     }
   </style>
 </head>
@@ -191,10 +180,14 @@
 
   <nav class="nav">
     <a href="/" class="nav-back">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       ENNOU
     </a>
-    <span class="nav-logo">MIIRI</span>
+    <div class="nav-links">
+      <a href="#how">使い方</a>
+      <a href="#receipt">レシート</a>
+      <a href="#download">ダウンロード</a>
+    </div>
     <a href="https://apps.apple.com/jp/app/miiri/id6769758159" class="nav-store" target="_blank" rel="noopener">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
       App Store
@@ -203,79 +196,83 @@
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-dot"></div>
     <div class="hero-inner">
-      <img class="hero-icon" src="/images/miiri-icon.png" alt="MIIRI">
-      <div class="hero-text">
-        <div class="hero-badge">
-          <div class="hero-badge-dot"></div>
-          家庭菜園収益管理アプリ
-        </div>
-        <h1 class="hero-title">育てた野菜が、<br>数字になる。</h1>
-        <p class="hero-sub">
-          収穫した野菜を記録するだけで、市場価値が自動で計算される。<br>
-          毎月の「実入り」をレシートで実感できるアプリです。
-        </p>
-        <div class="hero-cta">
-          <a href="https://apps.apple.com/jp/app/miiri/id6769758159" class="btn-dl" target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            App Storeでダウンロード
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Concept -->
-  <section class="concept">
-    <div class="concept-inner">
-      <p class="concept-eyebrow">OUR BELIEF</p>
-      <p class="concept-quote">
-        「今月の実入り、<span class="concept-num">¥73,553</span>。<br>あなたの畑は、それだけの<br>価値を生み出している。」
+      <span class="hero-tag">HOME GARDEN APP</span>
+      <h1>育てた野菜が、<br>数字になる。</h1>
+      <p class="hero-sub">
+        収穫した野菜を記録するだけで、市場価値が自動で計算される。<br>
+        毎月の「実入り」をレシートで実感できるアプリです。
       </p>
-      <p class="concept-sub">
-        家庭菜園で育てた野菜には、目に見えない価値がある。<br>MIIRIはその価値を、数字で実感できるアプリです。
+      <hr class="hero-divider">
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">PLATFORM</span>
+          <span class="hero-meta-value">iOS</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">FREE PLAN</span>
+          <span class="hero-meta-value">無料で使える</span>
+        </div>
+        <div class="hero-meta-item">
+          <span class="hero-meta-label">BY</span>
+          <span class="hero-meta-value">ENNOU</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="mission">
+    <div class="mission-inner">
+      <p class="mission-label">OUR BELIEF</p>
+      <p class="mission-quote">
+        「今月の実入り、<span class="mission-hl">¥73,553</span>。<br>
+        あなたの畑は、それだけの<br>
+        価値を生み出している。」
+      </p>
+      <p class="mission-sub">
+        家庭菜園で育てた野菜には、目に見えない価値がある。<br>
+        MIIRIはその価値を、数字で実感できるアプリです。
       </p>
     </div>
   </section>
 
-  <!-- What is MIIRI -->
-  <section class="sec" style="background:#fff">
-    <div class="sec-inner">
-      <div class="eyebrow">
-        <div class="eyebrow-line"></div>
-        <span class="eyebrow-text">WHAT IS MIIRI</span>
-      </div>
-      <h2 class="sec-title">MIIRIって、<br>どんなアプリ？</h2>
-      <div class="cards">
-        <div class="card">
-          <div class="card-head">
-            <span class="card-ico">🥬</span>
-            <span class="card-title">収穫した野菜を記録するだけ。</span>
+  <!-- How it works -->
+  <section class="how" id="how">
+    <div class="how-inner">
+      <p class="section-label">HOW IT WORKS</p>
+      <h2 class="section-h2">使い方は3ステップ</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <h3>収穫した野菜を記録する</h3>
+            <p>野菜の種類と数量を入力するだけ。種まきや植え付け日の入力は不要。思い立ったときにすぐ記録できます。</p>
           </div>
-          <p class="sec-body">キュウリ3本、ミニトマト10個——記録するのはそれだけ。MIIRIが<span class="hl">市場価格をもとに自動計算</span>して、実入りを算出します。</p>
-          <p class="sec-body" style="margin-top:12px">難しい設定は不要。収穫の翌日でも、まとめて入力でも大丈夫。</p>
         </div>
-        <div class="card card-green">
-          <div class="card-head">
-            <span class="card-ico">🧾</span>
-            <span class="card-title" style="color:var(--green)">月末に、レシートが届く。</span>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <h3>N・P・K・Ca・Mg が積み上がる</h3>
+            <p>記録した野菜の収穫量をもとに市場価格で自動算出。合計の実入りがリアルタイムで更新されます。</p>
           </div>
-          <p class="sec-body">毎月の収穫をまとめた<span class="hl">ハーベストレシート</span>を発行できます。野菜ごとの内訳と合計金額が一目でわかり、SNSでシェアすることもできます。</p>
-          <p class="sec-body" style="margin-top:12px">「今月もよく育てた」を、数字で実感してください。</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <h3>月末にレシートを発行・シェア</h3>
+            <p>月間の収穫レシートを画像で保存できます。SNSでシェアして達成感を家族や友人と共有しましょう。</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Receipt demo -->
-  <section class="sec" style="background:var(--cream-soft)">
-    <div class="sec-inner">
-      <div class="eyebrow">
-        <div class="eyebrow-line"></div>
-        <span class="eyebrow-text">HARVEST RECEIPT</span>
-      </div>
-      <h2 class="sec-title">毎月の実入りが、<br>レシートになる。</h2>
+  <!-- Receipt -->
+  <section class="receipt-section" id="receipt">
+    <div class="receipt-inner">
+      <p class="section-label">HARVEST RECEIPT</p>
+      <h2 class="section-h2">毎月の実入りが、<br>レシートになる。</h2>
       <div class="receipt">
         <div class="receipt-header">
           <div class="receipt-app">MIIRI</div>
@@ -283,34 +280,13 @@
           <div class="receipt-date">2026.05 &nbsp; 01 — 31</div>
         </div>
         <div class="receipt-rows">
-          <div class="receipt-row">
-            <span class="receipt-name">キュウリ</span>
-            <span class="receipt-price">¥17,600</span>
-          </div>
-          <div class="receipt-row">
-            <span class="receipt-name">ミニトマト</span>
-            <span class="receipt-price">¥10,512</span>
-          </div>
-          <div class="receipt-row">
-            <span class="receipt-name">玉ネギ</span>
-            <span class="receipt-price">¥8,500</span>
-          </div>
-          <div class="receipt-row">
-            <span class="receipt-name">スナップエンドウ</span>
-            <span class="receipt-price">¥18,526</span>
-          </div>
-          <div class="receipt-row">
-            <span class="receipt-name">ナス</span>
-            <span class="receipt-price">¥9,440</span>
-          </div>
-          <div class="receipt-row">
-            <span class="receipt-name">ピーマン</span>
-            <span class="receipt-price">¥3,575</span>
-          </div>
-          <div class="receipt-row">
-            <span class="receipt-name">トマト</span>
-            <span class="receipt-price">¥5,400</span>
-          </div>
+          <div class="receipt-row"><span class="receipt-name">キュウリ</span><span class="receipt-price">¥17,600</span></div>
+          <div class="receipt-row"><span class="receipt-name">ミニトマト</span><span class="receipt-price">¥10,512</span></div>
+          <div class="receipt-row"><span class="receipt-name">玉ネギ</span><span class="receipt-price">¥8,500</span></div>
+          <div class="receipt-row"><span class="receipt-name">スナップエンドウ</span><span class="receipt-price">¥18,526</span></div>
+          <div class="receipt-row"><span class="receipt-name">ナス</span><span class="receipt-price">¥9,440</span></div>
+          <div class="receipt-row"><span class="receipt-name">ピーマン</span><span class="receipt-price">¥3,575</span></div>
+          <div class="receipt-row"><span class="receipt-name">トマト</span><span class="receipt-price">¥5,400</span></div>
         </div>
         <div class="receipt-total">
           <span class="receipt-total-label">5月の実入り</span>
@@ -318,98 +294,61 @@
         </div>
         <div class="receipt-note">※ 市場価格を参考にした概算</div>
       </div>
-      <p class="sec-body">このレシートを、毎月発行して記録に残せます。SNSでシェアして、畑仲間に自慢してみてください。</p>
+      <p style="font-size:15px;line-height:1.85;color:var(--ink-dim);max-width:520px">このレシートを毎月発行して記録に残せます。SNSでシェアして、畑仲間に自慢してみてください。</p>
     </div>
   </section>
 
-  <!-- How it works -->
-  <section class="sec" style="background:#fff">
-    <div class="sec-inner">
-      <div class="eyebrow">
-        <div class="eyebrow-line"></div>
-        <span class="eyebrow-text">HOW IT WORKS</span>
-      </div>
-      <h2 class="sec-title">使い方は、<br>3ステップ。</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div>
-            <div class="step-title">収穫した野菜を記録する</div>
-            <div class="step-body">野菜の種類と数量を入力するだけ。種まきや植え付け日の入力は不要。思い立ったときにすぐ記録できる。</div>
+  <!-- Philosophy -->
+  <section class="philosophy">
+    <div class="philosophy-inner">
+      <p class="section-label">PHILOSOPHY</p>
+      <h2 class="section-h2">MIIRIの考え方</h2>
+      <div class="phil-list">
+        <div class="phil-item">
+          <span class="phil-index">01</span>
+          <div class="phil-body">
+            <h3>育てた野菜には、見えない価値がある</h3>
+            <p>スーパーで買う野菜には値段がついている。でも自分で育てた野菜には値段がつかない。MIIRIはその「見えない価値」を数字にするアプリです。</p>
           </div>
         </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div>
-            <div class="step-title">市場価値が自動で計算される</div>
-            <div class="step-body">記録した野菜の収穫量をもとに、その日の市場価格で自動算出。合計の実入りがリアルタイムで更新される。</div>
+        <div class="phil-item">
+          <span class="phil-index">02</span>
+          <div class="phil-body">
+            <h3>記録はシンプルに</h3>
+            <p>難しい設定は不要。収穫した野菜と数量を入力するだけ。家庭菜園を続けるハードルを下げることがこのアプリの目的です。</p>
           </div>
         </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div>
-            <div class="step-title">月末にレシートを発行・シェア</div>
-            <div class="step-body">月間の収穫レシートを画像で保存できる。SNSでシェアして達成感を家族や友人と共有しよう。</div>
+        <div class="phil-item">
+          <span class="phil-index">03</span>
+          <div class="phil-body">
+            <h3>達成感を共有できる</h3>
+            <p>月間の収穫レシートは画像として保存・シェアできます。「今月もよく育てた」を、数字で実感してもらいたい。</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Feature list -->
-  <section class="sec" style="background:var(--cream-soft)">
-    <div class="sec-inner">
-      <div class="card">
-        <div class="card-head">
-          <span class="card-ico">🌿</span>
-          <span class="card-title">MIIRIでできること</span>
-        </div>
-        <div class="feat-list">
-          <div class="feat-item">
-            <div class="feat-ico">📝</div>
-            <div class="feat-text">収穫した野菜の種類・数量を記録できる</div>
-          </div>
-          <div class="feat-item">
-            <div class="feat-ico">💰</div>
-            <div class="feat-text">市場価格をもとに、収穫の市場価値を自動計算</div>
-          </div>
-          <div class="feat-item">
-            <div class="feat-ico">🧾</div>
-            <div class="feat-text">月間の「ハーベストレシート」を発行・保存</div>
-          </div>
-          <div class="feat-item">
-            <div class="feat-ico">📊</div>
-            <div class="feat-text">野菜ごとの内訳グラフで、畑の傾向を把握</div>
-          </div>
-          <div class="feat-item">
-            <div class="feat-ico">📤</div>
-            <div class="feat-text">レシートをSNSにシェアして達成感を共有</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <div class="cta-inner">
-      <h2 class="cta-title">育てた野菜を、<br>数字で実感しよう。</h2>
-      <p class="cta-sub">家庭菜園の実入りを見える化するアプリ。<br>無料ではじめられます。</p>
-      <a href="https://apps.apple.com/jp/app/miiri/id6769758159" class="cta-btn" target="_blank" rel="noopener">
+  <!-- Download -->
+  <section class="download" id="download">
+    <div class="download-inner">
+      <h2>育てた野菜を、数字で実感する</h2>
+      <p>家庭菜園の実入りを見える化するアプリ</p>
+      <a class="store-btn" href="https://apps.apple.com/jp/app/miiri/id6769758159" target="_blank" rel="noopener">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        App Storeでダウンロード
+        App Store でダウンロード
       </a>
-      <p class="cta-note">iOS対応 · 無料でご利用いただけます</p>
+      <p class="store-note">無料ではじめられます · iOS対応</p>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer>
     <div class="footer-inner">
       <div class="footer-top">
         <div>
           <div class="footer-logo">MIIRI</div>
-          <p class="footer-sub">家庭菜園収益管理アプリ · by ENNOU</p>
+          <p class="footer-desc">家庭菜園収益管理アプリ<br>by ENNOU</p>
         </div>
         <div class="footer-links">
           <a href="/">ENNOUトップ</a>

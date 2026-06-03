@@ -118,32 +118,46 @@
       font-size: 40px; font-weight: 900; color: var(--ink);
       letter-spacing: -1.5px; line-height: 1.15; margin-bottom: 28px;
     }
-    .product-grid { display: flex; flex-direction: column; gap: 24px; }
+    .product-grid { display: flex; flex-direction: column; gap: 20px; }
     .product-card {
-      border-radius: 28px; padding: 28px 36px;
-      display: flex; align-items: center; gap: 40px;
+      border-radius: 24px; padding: 24px 28px;
+      display: flex; flex-direction: column; gap: 14px;
       border: 1.5px solid var(--border);
       transition: box-shadow .2s;
     }
-    .product-card:hover { box-shadow: 0 20px 50px rgba(0,0,0,.07); }
+    .product-card:hover { box-shadow: 0 16px 40px rgba(0,0,0,.07); }
     .product-card-main { background: var(--green-tint); border-color: var(--green-soft); }
+    .product-card-head { display: flex; align-items: center; gap: 16px; }
     .product-icon {
-      width: 72px; height: 72px; border-radius: 20px; color: #fff;
+      width: 60px; height: 60px; border-radius: 15px; color: #fff;
       display: flex; align-items: center; justify-content: center;
-      font-weight: 900; font-size: 13px; letter-spacing: 1px; flex-shrink: 0;
+      font-weight: 900; font-size: 11px; letter-spacing: 1px; flex-shrink: 0;
     }
     .icon-green { background: var(--green); }
     .icon-earth { background: var(--earth); }
-    .product-body { flex: 1; }
-    .product-name { font-weight: 900; font-size: 26px; letter-spacing: 2px; color: var(--ink); margin-bottom: 8px; }
-    .product-en { font-size: 13px; color: var(--ink-soft); font-weight: 500; margin-bottom: 16px; letter-spacing: .5px; }
-    .product-desc { font-size: 15px; line-height: 1.85; color: var(--ink-dim); max-width: 560px; }
+    .icon-brown { background: #3A2818; }
+    .product-icon-img {
+      width: 60px; height: 60px; border-radius: 15px;
+      object-fit: cover; flex-shrink: 0; display: block;
+    }
+    .product-head-text { flex: 1; }
+    .product-name { font-weight: 900; font-size: 22px; letter-spacing: 1px; color: var(--ink); margin-bottom: 4px; }
+    .product-en { font-size: 12px; color: var(--ink-soft); font-weight: 500; letter-spacing: .5px; }
+    .product-desc { font-size: 14px; line-height: 1.85; color: var(--ink-dim); }
     .product-pill {
-      padding: 8px 16px; border-radius: 999px; font-size: 12px; font-weight: 700;
-      flex-shrink: 0; align-self: flex-start;
+      padding: 5px 12px; border-radius: 999px; font-size: 11px; font-weight: 700;
+      align-self: flex-start;
     }
     .pill-live { background: var(--green-soft); color: var(--green); }
     .pill-dev  { background: var(--earth-soft); color: var(--earth); }
+    .store-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 22px; border-radius: 12px;
+      background: #1A1A1A; color: #fff; font-size: 14px; font-weight: 700;
+      letter-spacing: .3px; align-self: flex-start;
+      position: relative; z-index: 2; transition: background .15s;
+    }
+    .store-badge:hover { background: #333; }
 
     /* ── Company ── */
     .company { padding: 48px 56px; background: var(--cream-soft); }
@@ -185,22 +199,6 @@
       font-size: 12px; color: rgba(255,255,255,.3);
     }
 
-    /* ── Product icon (image) ── */
-    .product-icon-img {
-      width: 72px; height: 72px; border-radius: 18px;
-      object-fit: cover; flex-shrink: 0; display: block;
-    }
-    .icon-brown { background: #3A2818; }
-    /* ── App Store badge ── */
-    .store-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 14px; padding: 7px 14px; border-radius: 999px;
-      background: #1A1A1A; color: #fff; font-size: 12px; font-weight: 700;
-      letter-spacing: .3px; position: relative; z-index: 2;
-      transition: background .15s;
-    }
-    .store-badge:hover { background: #333; }
-
     /* ── Mobile ── */
     @media (max-width: 768px) {
       .nav { padding: 14px 20px; }
@@ -217,8 +215,8 @@
 
       .products { padding: 64px 24px; }
       h2 { font-size: 32px; letter-spacing: -1px; margin-bottom: 36px; }
-      .product-card { flex-direction: column; align-items: flex-start; padding: 28px 24px; gap: 20px; }
-      .product-pill { align-self: auto; }
+      .product-card { padding: 20px; }
+      .store-badge { font-size: 13px; padding: 11px 18px; }
 
       .company { padding: 64px 24px; }
       .company-inner { grid-template-columns: 1fr; gap: 40px; }
@@ -320,7 +318,7 @@
       <a href="#products">プロダクト</a>
       <a href="#company">ABOUT</a>
     </div>
-    <button class="btn-contact" id="nav-cta" onclick="location.href='mailto:contact@ennou.app'">お問い合わせ</button>
+    <button class="btn-contact" id="nav-cta" style="display:none"></button>
   </nav>
 
   <!-- トップページ -->
@@ -360,52 +358,53 @@
         <div class="product-grid">
 
           <div class="product-card product-card-main" onclick="location.href='/ennou/'" style="cursor:pointer">
-            <img class="product-icon-img" src="/images/ennou-icon.png" alt="ENNOU">
-            <div class="product-body">
-              <p class="product-name">ENNOU</p>
-              <p class="product-en">農体験マッチングアプリ</p>
-              <p class="product-desc">
-                人と農をつなぐマッチングプラットフォーム。
-                子連れファミリーや都市部の方が、農のお手伝いに気軽に参加できる機会を提供します。
-                農体験を通じた新しいつながりを生み出します。
-              </p>
-              <a href="https://apps.apple.com/jp/app/ennou/id6761766213" class="store-badge" onclick="event.stopPropagation()" target="_blank" rel="noopener">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                App Store
-              </a>
-            </div>
             <span class="product-pill pill-live">リリース中</span>
+            <div class="product-card-head">
+              <img class="product-icon-img" src="/images/ennou-icon.png" alt="ENNOU">
+              <div class="product-head-text">
+                <p class="product-name">ENNOU</p>
+                <p class="product-en">農体験マッチングアプリ</p>
+              </div>
+            </div>
+            <p class="product-desc">
+              人と農をつなぐマッチングプラットフォーム。子連れファミリーや都市部の方が、農のお手伝いに気軽に参加できる機会を提供します。農体験を通じた新しいつながりを生み出します。
+            </p>
+            <a href="https://apps.apple.com/jp/app/ennou/id6761766213" class="store-badge" onclick="event.stopPropagation()" target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              App Storeでダウンロード
+            </a>
           </div>
 
           <div class="product-card" onclick="location.href='/miiri/'" style="cursor:pointer">
-            <img class="product-icon-img" src="/images/miiri-icon.png" alt="MIIRI">
-            <div class="product-body">
-              <p class="product-name">MIIRI</p>
-              <p class="product-en">家庭菜園収益管理アプリ</p>
-              <p class="product-desc">
-                作物の収益・管理アプリ。育てた野菜の市場価値を可視化し、
-                「見えないコスト」を明らかにします。
-                記録・集計・レポートをシンプルなUIで提供します。
-              </p>
-              <a href="https://apps.apple.com/jp/app/miiri/id6769758159" class="store-badge" onclick="event.stopPropagation()" target="_blank" rel="noopener">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                App Store
-              </a>
-            </div>
             <span class="product-pill pill-live">リリース中</span>
+            <div class="product-card-head">
+              <img class="product-icon-img" src="/images/miiri-icon.png" alt="MIIRI">
+              <div class="product-head-text">
+                <p class="product-name">MIIRI</p>
+                <p class="product-en">家庭菜園収益管理アプリ</p>
+              </div>
+            </div>
+            <p class="product-desc">
+              作物の収益・管理アプリ。育てた野菜の市場価値を可視化し、「見えないコスト」を明らかにします。記録・集計・レポートをシンプルなUIで提供します。
+            </p>
+            <a href="https://apps.apple.com/jp/app/miiri/id6769758159" class="store-badge" onclick="event.stopPropagation()" target="_blank" rel="noopener">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              App Storeでダウンロード
+            </a>
           </div>
 
           <div class="product-card" onclick="location.href='/kaesu/'" style="cursor:pointer">
-            <div class="product-icon icon-brown">KAESU</div>
-            <div class="product-body">
-              <p class="product-name">KAESU</p>
-              <p class="product-en">コンポスト栄養記録アプリ</p>
-              <p class="product-desc">
-                捨てていたものに、数字を取り戻す。コーヒーかす、卵の殻、野菜くずを記録するだけで
-                N・P・K・Ca・Mgが積み上がり、今の栄養で何が育てられるかがわかります。
-              </p>
-            </div>
             <span class="product-pill pill-dev">開発中</span>
+            <div class="product-card-head">
+              <div class="product-icon icon-brown">KAESU</div>
+              <div class="product-head-text">
+                <p class="product-name">KAESU</p>
+                <p class="product-en">コンポスト栄養記録アプリ</p>
+              </div>
+            </div>
+            <p class="product-desc">
+              捨てていたものに、数字を取り戻す。コーヒーかす、卵の殻、野菜くずを記録するだけでN・P・K・Ca・Mgが積み上がり、今の栄養で何が育てられるかがわかります。
+            </p>
           </div>
 
         </div>
@@ -515,8 +514,11 @@
     document.getElementById('post-view').style.display = 'block';
     document.getElementById('nav-site-links').style.display = 'none';
     const navCta = document.getElementById('nav-cta');
-    navCta.textContent = 'アプリで開く';
-    navCta.onclick = () => openInApp();
+    if (navCta) {
+      navCta.style.display = '';
+      navCta.textContent = 'アプリで開く';
+      navCta.onclick = () => openInApp();
+    }
     loadPost(postId);
   }
 
